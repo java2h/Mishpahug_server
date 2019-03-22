@@ -21,6 +21,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import application.dto.EventDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -36,7 +37,6 @@ import lombok.ToString;
 		@UniqueConstraint(columnNames = { "user_owner", "date", "time", "name_of_event" }) })
 @Getter
 @Setter
-@NoArgsConstructor
 @EqualsAndHashCode(of = { "userEntityOwner", "date", "time", "nameOfEvent" }) // business key;
 @ToString(exclude = { "userEntityOwner", "addressEntity" , "subscriptions" })
 public class EventEntity {
@@ -87,6 +87,24 @@ public class EventEntity {
 	public enum EventStatus {
 		CREATED, PENDING, COMPLETE, CANCELED
 	}
+
+
+	//Construction EVENT with EventDTO
+	public EventEntity(EventDTO eventDTO) {
+		this.date = eventDTO.getDate();
+		this.time = eventDTO.getTime();
+		this.nameOfEvent = eventDTO.getNameOfEvent();
+		this.kichenTypeEntity = eventDTO.getKichenType();
+		this.holiDayEntity = eventDTO.getHoliDay();
+		this.status = EventStatus.CREATED;
+		this.userEntityOwner = eventDTO.getUserOwnerEntity();
+		this.addressEntity = eventDTO.getAddressEntity();
+	}
+
+
+
+
+
 
 	/**
 	 * Returns part of business key as string for logging;

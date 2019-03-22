@@ -14,18 +14,24 @@ import java.util.Set;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@EqualsAndHashCode(of = { "date", "time", "nameOfEvent", "userOwnerEntity" }) // business key;
-@ToString(exclude = { "date", "time", "nameOfEvent", "userOwnerEntity" })
 public class EventDTO {
 
-	private LocalDate date;
+	private String nameOfEvent;
+	private UserEntity userOwnerEntity;
 
+	private HoliDayEntity holiDay;
+	private ReligionEntity religion;
+	private KichenTypeEntity kichenType;
+
+	private AddressEntity addressEntity;
+	private String description;
+
+	private LocalDate date;
 	private LocalTime time;
 
-	private String nameOfEvent;
 
-	private  AddressEntity addressEntity;
 
-	private UserEntity userOwnerEntity;
+
+
+
 }

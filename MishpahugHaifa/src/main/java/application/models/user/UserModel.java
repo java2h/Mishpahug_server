@@ -40,20 +40,8 @@ public class UserModel implements IUserModel {
     public UserEntity add(UserEntity data) {
         return userRepository.save(data);
     }
-    /*          keys for update
-    nickname
-    firstname
-    lastname
-    email
-    address.build
-    address.city
-    address.apartment
-    address.street
-    telephone
-     */
-    /*нужно протестировать не уверен в работе кода между !!!.
-    * проверен вариант зактнуть логику в сущноть... не подойдет,
-     * так как нужен поиск города по имени*/
+
+
     @Override
     public UserEntity update(Integer userId, HashMap<String, String> data)
     {

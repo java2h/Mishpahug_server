@@ -18,16 +18,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import application.dto.UserDTOFirst;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import application.utils.EncrytedPasswordUtils;
 import application.entities.values.PictureValue;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -37,8 +36,6 @@ import lombok.ToString;
 @EqualsAndHashCode(of = { "eMail" })
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder 
 public class UserEntity {
 	@Id
@@ -65,9 +62,15 @@ public class UserEntity {
 	@Setter(AccessLevel.NONE)
 	private String encrytedPassword;
 
+
+	public UserEntity(UserDTOFirst userDTOFirst) {
+		this.eMail = userDTOFirst.getEmail();
+		setEncrytedPassword(userDTOFirst.getEncrytedPassword());
+	} // Constructor for the first window(first step) then we have only email and pass
+
 	public void setEncrytedPassword(String encrytedPassword) {
 		this.encrytedPassword = EncrytedPasswordUtils.encrytePassword(encrytedPassword);
-	}
+	} // createPass
 
 	@Column(name = "Enabled", length = 1)
 	private boolean enabled;
