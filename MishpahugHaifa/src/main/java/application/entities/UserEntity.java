@@ -1,5 +1,6 @@
 package application.entities;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,6 +20,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import application.dto.UserDTOFirst;
+import application.dto.UserDTOSecond;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import application.utils.EncrytedPasswordUtils;
@@ -43,30 +45,58 @@ public class UserEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name = "firstname")
+	@Column(name = "Firstname")
 	private String firstName;
 
-	@Column(name = "lastname")
+	@Column(name = "Lastname")
 	private String lastName;
 
-	@Column(name = "phonenumber")
+	@Column(name = "Phonenumber")
 	private String phoneNumber;
 
-	@Column(name = "email", nullable = false)
+	@Column(name = "Email", nullable = false)
 	private String eMail;
-
-	@Column(name = "User_Name", length = 36)
-	private String userName;
 
 	@Column(name = "Encryted_Password", length = 128)
 	@Setter(AccessLevel.NONE)
 	private String encrytedPassword;
+
+	@Column(name = "BirthDay")
+	private LocalDate birthday;
+
+	@Column(name = "Religion")
+	private ReligionEntity religion;
+
+	@Column(name = "Kichen_type")
+	private KichenTypeEntity kichenType;
+
+	@Column(name = "Gender")
+	private Gender gender;
+
+	@Column(name = "Marriage_status")
+	private MarriageStatus marriageStatus;
 
 
 	public UserEntity(UserDTOFirst userDTOFirst) {
 		this.eMail = userDTOFirst.getEmail();
 		setEncrytedPassword(userDTOFirst.getEncrytedPassword());
 	} // Constructor for the first window(first step) then we have only email and pass
+
+	public UserEntity(UserDTOFirst userDTOFirst, UserDTOSecond userDTOSecond){
+		this.eMail = userDTOFirst.getEmail();
+		setEncrytedPassword(userDTOFirst.getEncrytedPassword());
+
+		this.firstName = userDTOSecond.getFirstName();
+		this.lastName = userDTOSecond.getLastName();
+
+		this.phoneNumber = userDTOSecond.getPhoneNumber();
+		this.birthday = userDTOSecond.getBirthday();
+
+		this.religion = userDTOSecond.getReligion();
+		this.kichenType = userDTOSecond.getKichenType();
+		this.gender = userDTOSecond.getGender();
+		this.marriageStatus = userDTOSecond.getMarriageStatus();
+	} // Constructor for the first + second window
 
 	public void setEncrytedPassword(String encrytedPassword) {
 		this.encrytedPassword = EncrytedPasswordUtils.encrytePassword(encrytedPassword);
