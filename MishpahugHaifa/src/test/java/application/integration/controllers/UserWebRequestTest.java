@@ -35,7 +35,7 @@ import static org.junit.Assert.assertTrue;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class UserWebRequestTest {
 
-    private final UserEntity ALYSSA = new UserEntity("Alyssa", "p_hacker@sicp.edu");
+  private final UserEntity ALYSSA = new UserEntity("Alyssa", "p_hacker@sicp.edu");
     private final HttpHeaders headers = new HttpHeaders();
     private String token;
     
@@ -80,7 +80,20 @@ public class UserWebRequestTest {
         assertTrue(users.contains(ALYSSA));
         assertTrue(users.size() > 1);
     }
-    
+
+    @Test
+    public void addUser() throws Exception {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setEMail("test@mail.ru");
+        userDTO.setUserName("123456789");
+        userDTO.setEncryptedPassword("123456789");
+        userDTO.setConfirmedPassword("123456789");
+        UserEntity user = this.restTemplate.exchange("http://localhost:" + port + "/user/register", HttpMethod.POST,
+                new HttpEntity<UserDTO>(userDTO),
+                new ParameterizedTypeReference<UserEntity>() {
+                }).getBody();
+    }
+
     @Test
     public void getByIdShouldReturnUser() throws Exception {
        
@@ -95,24 +108,49 @@ public class UserWebRequestTest {
     }
 
 //TODO: Stable data with working user index pulled from the database; 
+//    @Test
+//    public void testEventListByGuest(){
+//        Collection<EventDTO> events = this.restTemplate.exchange("http://localhost:" + port + "/user/6/subscribes", HttpMethod.GET,
+//                new HttpEntity<String>(headers),
+//                new ParameterizedTypeReference<Collection<EventDTO>>() {
+//                }).getBody();
+//        System.out.println("" + events);
+//        assertTrue(events.size() >= 1);
+//    }
+//
+//    @Test
+//    public void testEventListByOwner(){
+//        Collection<EventDTO> events = this.restTemplate.exchange("http://localhost:8080/user/12/events", HttpMethod.GET,
+//                new HttpEntity<String>(headers),
+//                new ParameterizedTypeReference<Collection<EventDTO>>() {
+//                }).getBody();
+//        System.out.println("" + events);
+//        assertTrue(events.size() >= 1);
+//    }
+    
     @Test
-    public void testEventListByGuest(){
-        Collection<EventDTO> events = this.restTemplate.exchange("http://localhost:" + port + "/user/6/subscribes", HttpMethod.GET,
-                new HttpEntity<String>(headers),
-                new ParameterizedTypeReference<Collection<EventDTO>>() {
-                }).getBody();
-        System.out.println("" + events);
-        assertTrue(events.size() >= 1);
-    }
-
-    @Test
-    public void testEventListByOwner(){
-        Collection<EventDTO> events = this.restTemplate.exchange("http://localhost:8080/user/12/events", HttpMethod.GET,
-                new HttpEntity<String>(headers),
-                new ParameterizedTypeReference<Collection<EventDTO>>() {
-                }).getBody();
-        System.out.println("" + events);
-        assertTrue(events.size() >= 1);
+    public void addAllShouldReturnNewUser() throws Exception { //TODO: fix me pls
+       
+        final String BENUSERNAME = "ben";
+    	final String BENEMAIL = "bitdiddlesecond@sicp.edu";
+    	final String BENPASS = "encryptedpassword";
+    	
+    	
+    	UserDTO dto = new UserDTO();
+    	dto.setEMail(BENEMAIL);
+    	dto.setUserName(BENUSERNAME);
+    	dto.setEncryptedPassword(BENPASS);
+    	dto.setConfirmedPassword(BENPASS);
+    	
+        HttpEntity<UserDTO> updateRequest = new HttpEntity<>(dto , headers);
+        this.restTemplate.exchange("http://localhost:" + port + "/user/register/", HttpMethod.POST,
+        		updateRequest,
+                new ParameterizedTypeReference<UserDTO>() {
+                });
+        
+        UserEntity newUser = userRepo.findByUserName(BENUSERNAME);
+        assertEquals(newUser.getUserName(), BENUSERNAME);
+        assertEquals(newUser.getEMail(), BENEMAIL);   
     }
 
 
@@ -121,7 +159,7 @@ public class UserWebRequestTest {
        
     	String updatedFirstName = "Alyssa_Updated";
     	Map<String,String> updateMap = new HashMap<>();
-    	updateMap.put("firstname", updatedFirstName);
+    	updateMap.put("firstName", updatedFirstName);
         HttpEntity<Map<String,String>> updateRequest = new HttpEntity<>(updateMap, headers);
         UserDTO updated = this.restTemplate.exchange("http://localhost:" + port + "/user/" + ALYSSA.getId(), HttpMethod.PUT,
         		updateRequest,
