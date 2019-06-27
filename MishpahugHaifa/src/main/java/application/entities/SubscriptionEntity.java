@@ -1,5 +1,6 @@
 package application.entities;
 
+import application.entities.enums.SubscriptionStatus;
 import application.entities.values.FeedBackValue;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
@@ -77,26 +78,6 @@ public class SubscriptionEntity {
 	@Setter(AccessLevel.NONE)
 	private SubscriptionStatus status = SubscriptionStatus.ACTIVE;
 
-	public enum SubscriptionStatus implements StatusChanger {
-		ACTIVE(e -> e.activate()), CANCELED(e -> e.cancel()), DEACTIVATED(e -> e.deactivate()), PENDINGFORDELETION(
-				e -> e.putIntoDeletionQueue());
-
-		private StatusChanger changer;
-
-		private SubscriptionStatus(StatusChanger changer) {
-			this.changer = changer;
-		}
-
-		@Override
-		public void change(SubscriptionEntity subscription) {
-			changer.change(subscription);
-		}
-	}
-
-	@FunctionalInterface
-	private interface StatusChanger {
-		void change(SubscriptionEntity subscription);
-	}
 	
 	public SubscriptionEntity(UserEntity userGuest, EventEntity event) {
 		super();

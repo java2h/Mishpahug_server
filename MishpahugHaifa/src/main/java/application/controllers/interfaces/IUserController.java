@@ -4,9 +4,12 @@ import application.dto.EventDTO;
 import application.dto.LoginDTO;
 import application.dto.LoginResponse;
 import application.dto.UserDTO;
+import application.entities.UserEntity;
 import com.querydsl.core.types.Predicate;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 
 import javax.security.auth.login.FailedLoginException;
@@ -30,7 +33,10 @@ public interface IUserController {
     LoginResponse login(HttpHeaders httpHeaders, HttpServletRequest request, LoginDTO loginDTO) throws FailedLoginException;
 	void logout(String token);
 	void add(HttpHeaders httpHeaders, HttpServletRequest request, UserDTO userDTO);
-	UserDTO update(HttpHeaders httpHeaders, HttpServletRequest request, HashMap<String, String> data, Integer id);
+
+    void add1(@RequestHeader HttpHeaders httpHeaders, HttpServletRequest request, @RequestBody UserEntity use);
+
+    UserDTO update(HttpHeaders httpHeaders, HttpServletRequest request, HashMap<String, String> data, Integer id);
 	UserDTO delete(HttpHeaders httpHeaders, HttpServletRequest request, Integer id);
 	void deleteAll(HttpHeaders httpHeaders, HttpServletRequest request);
 	void setDataFromForm(HttpHeaders httpHeaders, HttpServletRequest request, UserDTO data);
