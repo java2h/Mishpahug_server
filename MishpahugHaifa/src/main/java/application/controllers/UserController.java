@@ -189,13 +189,7 @@ public class UserController implements IUserController {
         userModel.add(userEntity);
     }
 
-     @Override
-    @PostMapping(value = "/register1")
-    public void add1(@RequestHeader HttpHeaders httpHeaders, HttpServletRequest request, @RequestBody UserEntity user) {
-        System.out.println(" ---------> " + user);
-    }
-
-
+    
     @Override
     @PutMapping(value = "/{id}")
     public UserDTO update(@RequestHeader HttpHeaders httpHeaders, HttpServletRequest request,

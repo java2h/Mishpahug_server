@@ -45,10 +45,12 @@ public class UserEntity {
 	@Column(name = "phonenumber")
 	private String phoneNumber;
 
+	@NotNull
 	@lombok.NonNull
 	@Column(name = "email", nullable = false)
 	private String eMail;
 
+	@NotNull
 	@lombok.NonNull
 	@Column(name = "username", length = 36, nullable = false)
 	@Setter(AccessLevel.NONE)
