@@ -80,7 +80,20 @@ public class UserWebRequestTest {
         assertTrue(users.contains(ALYSSA));
         assertTrue(users.size() > 1);
     }
-    
+
+    @Test
+    public void addUser() throws Exception {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setEMail("test@mail.ru");
+        userDTO.setUserName("123456789");
+        userDTO.setEncryptedPassword("123456789");
+        userDTO.setConfirmedPassword("123456789");
+        UserEntity user = this.restTemplate.exchange("http://localhost:" + port + "/user/register", HttpMethod.POST,
+                new HttpEntity<UserDTO>(userDTO),
+                new ParameterizedTypeReference<UserEntity>() {
+                }).getBody();
+    }
+
     @Test
     public void getByIdShouldReturnUser() throws Exception {
        
