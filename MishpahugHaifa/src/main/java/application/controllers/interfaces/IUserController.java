@@ -29,7 +29,7 @@ public interface IUserController {
 
     LoginResponse login(HttpHeaders httpHeaders, HttpServletRequest request, LoginDTO loginDTO) throws FailedLoginException;
 	void logout(String token);
-	void add(HttpHeaders httpHeaders, HttpServletRequest request, UserDTO userDTO);
+	void add(String email, HttpHeaders httpHeaders, HttpServletRequest request, UserDTO userDTO);
 	UserDTO update(HttpHeaders httpHeaders, HttpServletRequest request, HashMap<String, String> data, Integer id);
 	UserDTO delete(HttpHeaders httpHeaders, HttpServletRequest request, Integer id);
 	void deleteAll(HttpHeaders httpHeaders, HttpServletRequest request);
