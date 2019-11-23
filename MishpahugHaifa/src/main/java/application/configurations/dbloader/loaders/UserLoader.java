@@ -43,7 +43,7 @@ public class UserLoader implements ILoader {
 			while ((detail = br.readLine()) != null) {
 				String[] data = detail.split("!");
 				UserEntity user = new UserEntity(data[0].split("@")[0], data[0]);
-				Random ran = new Random();
+				user.setEncrytedPassword(DigestUtils.md5Hex((data[0].split("@")[0])));
 				user.activate();
 				log.debug("DBLoadTest -> UserLoader -> userentity = " + user);
 				this.data.userRepository.save(user);

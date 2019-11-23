@@ -23,16 +23,7 @@ public class DB_test_loader implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		loadTest(MPHEntity.CITY);
-		loadTest(MPHEntity.RELIGION);
-		loadTest(MPHEntity.KICHENTYPES);
-		loadTest(MPHEntity.MARRIAGE);
-		loadTest(MPHEntity.ADDRESS);
-		loadTest(MPHEntity.GENDER);
-		loadTest(MPHEntity.HOLIDAYS);
 		loadTest(MPHEntity.USER);
-		loadTest(MPHEntity.EVENT);
-		loadTest(MPHEntity.GUESTS);
 		loadTest(MPHEntity.LOGS);
 
 	}
