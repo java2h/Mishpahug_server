@@ -29,7 +29,7 @@ public class UserLoader implements ILoader {
 	public UserLoader(BufferedReader br) {
 		this.br = br;
 	}
-	
+
 	@Override
 	public void load() {
 		try {

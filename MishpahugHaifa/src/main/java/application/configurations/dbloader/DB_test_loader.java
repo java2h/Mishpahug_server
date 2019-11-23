@@ -17,50 +17,6 @@ import javax.transaction.Transactional;
 public class DB_test_loader implements CommandLineRunner {
 
 	@Autowired
-	@Qualifier("cityLoader")
-	private ILoader cityLoader;
-
-	@Autowired
-	@Qualifier("addressLoader")
-	private ILoader addressLoader;
-
-	@Autowired
-	@Qualifier("eventLoader")
-	private ILoader eventLoader;
-
-	@Autowired
-	@Qualifier("genderLoader")
-	private ILoader genderLoader;
-
-	@Autowired
-	@Qualifier("guestsLoader")
-	private ILoader guestsLoader;
-
-	@Autowired
-	@Qualifier("holidaysLoader")
-	private ILoader holidaysLoader;
-
-	@Autowired
-	@Qualifier("kitchenTypeLoader")
-	private ILoader kitchenTypeLoader;
-
-	@Autowired
-	@Qualifier("logsLoader")
-	private ILoader logsLoader;
-
-	@Autowired
-	@Qualifier("maritalStatusLoader")
-	private ILoader maritalStatusLoader;
-
-	@Autowired
-	@Qualifier("religionLoader")
-	private ILoader religionLoader;
-
-	@Autowired
-	@Qualifier("templateLoader")
-	private ILoader templateLoader;
-
-	@Autowired
 	@Qualifier("userLoader")
 	private ILoader userLoader;
 
@@ -86,56 +42,6 @@ public class DB_test_loader implements CommandLineRunner {
 		switch (entity) {
 		case USER: {
 			userLoader.load();
-			break;
-		}
-		
-		case EVENT: {
-			eventLoader.load();
-			break;
-		}
-		
-		case CITY: {
-			cityLoader.load();
-			break;
-		}
-		
-		case KICHENTYPES: {
-			kitchenTypeLoader.load();
-			break;
-		}
-		
-		case ADDRESS: {
-			addressLoader.load();
-			break;
-		}
-		
-		case HOLIDAYS: {
-			holidaysLoader.load();
-			break;
-		}
-		
-		case GENDER: {
-			genderLoader.load();
-			break;
-		}
-		
-		case MARRIAGE: {
-			maritalStatusLoader.load();
-			break;
-		}
-		
-		case RELIGION: {
-			religionLoader.load();
-			break;
-		}
-		
-		case GUESTS: {
-			guestsLoader.load();
-			break;
-		}
-		
-		case LOGS: {
-			logsLoader.load();
 			break;
 		}
 		}
