@@ -1,10 +1,6 @@
 package application.documentstypes;
 
-import application.entities.EventEntity;
 import application.entities.UserEntity;
-import application.entities.template.TemplateEntity;
-import application.entities.template.XYTextValue;
-import application.models.event.IEventModel;
 import application.models.user.IUserModel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +19,6 @@ import java.util.Arrays;
 @Slf4j
 public class JPGDocumentFormat {
     @Autowired
-    IEventModel eventModel;
-    @Autowired
     IUserModel userModel;
 
     private static Font getFont(String name, int size) {
@@ -42,36 +36,13 @@ public class JPGDocumentFormat {
                                              String toFile,
                                              String fontname,
                                              Integer fontsize,
-                                             TemplateEntity templateEntity,
                                              Integer eventId,
                                              Integer userId) throws IOException {
         BufferedImage myPicture = ImageIO.read(new File(template));
         Graphics2D g = (Graphics2D) myPicture.getGraphics();
         g.setStroke(new BasicStroke(3));
         g.setColor(Color.BLUE);
-        templateEntity.getItems().forEach((XYTextValue xyTextValue) -> {
-            g.setFont(getFont(fontname, fontsize));
-            log.info("createInvitationFromTemplate -> " + xyTextValue.getText());
-            String[] textData = xyTextValue.getText().split("!");
-            String textForPrint = "n/a";
-            log.info("createInvitationFromTemplate -> " + Arrays.toString(textData));
-            if (textData.length < 2) throw new RuntimeException("Internal error to template");
-            if (textData[0].equals("user"))
-            {
-                //TODO
-                    UserEntity userEntity = userModel.getById(userId);
-                    textForPrint = userEntity.fieldByName(textData[1]);
-                    log.info("createPictureFromTemplate -> userentity{" + userId + "} => data for print " + textData[1] + " > value = " + textForPrint);
-            }
-            if (textData[0].equals("event"))
-            {
-                    EventEntity eventEntity = eventModel.getById(eventId);
-                    textForPrint = eventEntity.fieldByName(textData[1]);
-                    log.info("createPictureFromTemplate -> evententity{" + eventId + "} => data for print " + textData[1] + " > value = " + textForPrint);
-            }
-            log.info("createInvitationFromTemplate -> textForPrint = " + textForPrint);
-            g.drawString(textForPrint, xyTextValue.getX(), xyTextValue.getY());
-        });
+        //TODO
         ImageIO.write(myPicture, "jpg", new File(toFile));
         log.info("createPictureFromTemplate -> file of template is " + template + " > Save to file " + toFile + " > completed");
     }

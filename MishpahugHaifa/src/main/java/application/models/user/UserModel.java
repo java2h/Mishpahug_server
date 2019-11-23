@@ -2,7 +2,6 @@ package application.models.user;
 
 import application.entities.UserEntity;
 import application.repositories.UserRepository;
-import application.utils.converter.IUpdates;
 import com.querydsl.core.types.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,9 +16,6 @@ public class UserModel implements IUserModel {
 
     @Autowired
     UserRepository userRepository;
-    
-    @Autowired
-    IUpdates updates; 
 
     @Override
     public UserEntity getByUsernameAndPassword(String username, String password) {
@@ -50,7 +46,7 @@ public class UserModel implements IUserModel {
     public UserEntity update(Integer userId,
                              HashMap<String, String> data){
         UserEntity user = userRepository.getOne(userId);
-        updates.updateUser(user, data);
+        //TODO
         // if (userRepository.existsByUserNameAndEMail(user.getUserName(), user.getEMail())) throw new EntityExistsException(""); 
         // we're trying to update existing user. throwing an exception if it exists will stop our job. 
         userRepository.save(user);
