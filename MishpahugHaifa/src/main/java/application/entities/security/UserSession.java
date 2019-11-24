@@ -37,11 +37,16 @@ public class UserSession {
     @Column(name = "useragent", nullable = false)
     private String userAgent;
 
-    @Column(name = "date", nullable = false)
-    private LocalDate localDate;
+    @Column(name = "datebegin", nullable = false)
+    private LocalDate localDateBegin;
 
-    @Column(name = "time", nullable = false)
-    private LocalTime localTime;
+    @Column(name = "timebegin", nullable = false)
+    private LocalTime localTimeBegin;
 
+    @Column(name = "dateend", nullable = true)
+    private LocalDate localDateEnd;
+
+    @Column(name = "timeend", nullable = true)
+    private LocalTime localTimeEnd;
 
 }

@@ -45,6 +45,7 @@ public class UserLoader implements ILoader {
 				UserEntity user = new UserEntity(data[0].split("@")[0], data[0]);
 				user.setEncrytedPassword(DigestUtils.md5Hex((data[0].split("@")[0])));
 				user.activate();
+				user.loadAvatar("av.png");
 				log.debug("DBLoadTest -> UserLoader -> userentity = " + user);
 				this.data.userRepository.save(user);
 			}

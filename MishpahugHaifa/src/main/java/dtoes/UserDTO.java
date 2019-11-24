@@ -1,5 +1,6 @@
 package dtoes;
 
+import application.entities.UserEntity;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,6 +39,12 @@ public class UserDTO {
         public void change(UserDTO user) {
             changer.change(user);
         }
+    }
+
+    public UserDTO(UserEntity userEntity){
+        this.firstName = userEntity.getFirstName();
+        this.eMail = userEntity.getEMail();
+        this.phoneNumber = userEntity.getPhoneNumber();
     }
 
     @FunctionalInterface

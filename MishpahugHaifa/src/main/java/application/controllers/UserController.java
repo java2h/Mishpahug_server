@@ -7,6 +7,8 @@ import application.repositories.UserSessionRepository;
 import com.querydsl.core.types.Predicate;
 import dtoes.LoginDTO;
 import dtoes.LoginResponse;
+import dtoes.LogoutResponse;
+import dtoes.UserDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.joda.time.DateTime;
@@ -62,9 +64,9 @@ public class UserController {
     }
 
     @GetMapping(value = "/{id}")
-    public UserEntity get(@RequestHeader HttpHeaders httpHeaders, HttpServletRequest request,
+    public UserDTO get(@RequestHeader HttpHeaders httpHeaders, HttpServletRequest request,
                        @PathVariable(value = "id") Integer id) {
-        return userModel.getById(id);
+        return new UserDTO(userModel.getById(id));
     }
 
     @PostMapping(value = "/login")
@@ -79,8 +81,6 @@ public class UserController {
                 httpHeaders.get("user-agent").get(0));
         if (userSessionOld != null) {
             userSessionOld.setToken(UUID.randomUUID().toString());
-            userSessionOld.setLocalDate(DateTime.now().toLocalDate());
-            userSessionOld.setLocalTime(DateTime.now().toLocalTime());
             log.info("User Controller -> Update token");
             userSessionRepository.save(userSessionOld);
             return new LoginResponse(userSessionOld.getToken());
@@ -90,8 +90,8 @@ public class UserController {
                 .token(UUID.randomUUID().toString())
                 .ip(request.getRemoteAddr())
                 .userAgent(httpHeaders.get("user-agent").get(0))
-                .localDate(DateTime.now().toLocalDate())
-                .localTime(DateTime.now().toLocalTime())
+                .localDateBegin(DateTime.now().toLocalDate())
+                .localTimeBegin(DateTime.now().toLocalTime())
                 .isValid(true)
                 .build();
         userSessionRepository.save(userSessionNew);
@@ -99,12 +99,15 @@ public class UserController {
     }
 
     @PostMapping(value = "/logout")
-    public void logout(@RequestHeader(name = "Authorization", required = false) String token) {
+    public LogoutResponse logout(@RequestHeader(name = "Authorization", required = false) String token) {
         if (token == null) throw new RuntimeException("Token is NULL");
         UserSession userSession = userSessionRepository.findByTokenAndIsValidTrue(token);
         if (userSession == null)  throw new RuntimeException("Token is incorrect");
         userSession.setIsValid(false);
+        userSession.setLocalDateEnd(DateTime.now().toLocalDate());
+        userSession.setLocalTimeEnd(DateTime.now().toLocalTime());
         userSessionRepository.save(userSession);
+        return new LogoutResponse("OK");
     }
 
 }

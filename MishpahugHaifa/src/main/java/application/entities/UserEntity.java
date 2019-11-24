@@ -1,13 +1,17 @@
 package application.entities;
 
+import application.utils.ImageUtils;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.IOException;
+import java.sql.Blob;
 import java.time.LocalDate;
 
 @Entity
@@ -64,6 +68,17 @@ public class UserEntity {
     @Setter(AccessLevel.NONE)
     @Builder.Default
     private UserStatus status = UserStatus.ACTIVE;
+
+    @Setter(AccessLevel.NONE)
+    private Blob picture;
+
+    public void loadAvatar(String filename){
+        try {
+            picture = BlobProxy.generateProxy(ImageUtils.getImage(filename));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public enum UserStatus implements StatusChanger {
         ACTIVE(u -> u.activate()), DEACTIVATED(u -> u.deactivate()), PENDINGFORDELETION(u -> u.putIntoDeletionQueue());
