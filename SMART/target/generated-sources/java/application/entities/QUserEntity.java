@@ -33,6 +33,8 @@ public class QUserEntity extends EntityPathBase<UserEntity> {
 
     public final StringPath phoneNumber = createString("phoneNumber");
 
+    public final SimplePath<java.sql.Blob> picture = createSimple("picture", java.sql.Blob.class);
+
     public final EnumPath<UserEntity.UserStatus> status = createEnum("status", UserEntity.UserStatus.class);
 
     public final StringPath userName = createString("userName");

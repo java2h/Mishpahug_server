@@ -25,9 +25,13 @@ public class QUserSession extends EntityPathBase<UserSession> {
 
     public final BooleanPath isValid = createBoolean("isValid");
 
-    public final DatePath<org.joda.time.LocalDate> localDate = createDate("localDate", org.joda.time.LocalDate.class);
+    public final DatePath<org.joda.time.LocalDate> localDateBegin = createDate("localDateBegin", org.joda.time.LocalDate.class);
 
-    public final TimePath<org.joda.time.LocalTime> localTime = createTime("localTime", org.joda.time.LocalTime.class);
+    public final DatePath<org.joda.time.LocalDate> localDateEnd = createDate("localDateEnd", org.joda.time.LocalDate.class);
+
+    public final TimePath<org.joda.time.LocalTime> localTimeBegin = createTime("localTimeBegin", org.joda.time.LocalTime.class);
+
+    public final TimePath<org.joda.time.LocalTime> localTimeEnd = createTime("localTimeEnd", org.joda.time.LocalTime.class);
 
     public final StringPath token = createString("token");
 
