@@ -17,13 +17,11 @@ import java.time.LocalDate;
 @Builder
 @Slf4j
 public class UserDTO {
-    private Integer id;
     private String firstName;
     private String lastName;
     private String phoneNumber;
     private String eMail;
     private String userName;
-    private String encrytedPassword;
     private LocalDate dateOfBirth;
     private UserStatus status = UserStatus.ACTIVE;
     public enum UserStatus implements StatusChanger {
@@ -43,7 +41,10 @@ public class UserDTO {
 
     public UserDTO(UserEntity userEntity){
         this.firstName = userEntity.getFirstName();
+        this.dateOfBirth = userEntity.getDateOfBirth();
+        this.lastName = userEntity.getLastName();
         this.eMail = userEntity.getEMail();
+        this.userName = userEntity.getUserName();
         this.phoneNumber = userEntity.getPhoneNumber();
     }
 

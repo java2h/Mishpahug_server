@@ -4,6 +4,7 @@ import application.entities.UserEntity;
 import application.entities.security.UserSession;
 import application.models.user.IUserModel;
 import application.repositories.UserSessionRepository;
+import application.utils.converter.User2DTO;
 import com.querydsl.core.types.Predicate;
 import application.dtoes.LoginDTO;
 import application.dtoes.LoginResponse;
@@ -57,9 +58,9 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/")
     @ResponseBody
-    public Iterable<UserEntity> findAllByWebQuerydsl(@RequestHeader HttpHeaders httpHeaders, HttpServletRequest request,
+    public Iterable<UserDTO> findAllByWebQuerydsl(@RequestHeader HttpHeaders httpHeaders, HttpServletRequest request,
                                                  @QuerydslPredicate(root = UserEntity.class) Predicate predicate) {
-        return userModel.getAll(predicate);
+        return User2DTO.userDTOList(userModel.getAll(predicate));
     }
 
     @GetMapping(value = "/{id}")

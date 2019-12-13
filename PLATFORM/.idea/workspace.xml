@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d81d7f33-b968-4f41-89c0-405d6e7c6ad2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../BLANK/.idea/$PRODUCT_WORKSPACE_FILE$" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BLANK/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BLANK/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BLANK/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BLANK/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BLANK/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BLANK/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BLANK/src/main/java/application/MainForm.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BLANK/src/main/java/application/MainForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SMART/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SMART/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SMART/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SMART/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="d81d7f33-b968-4f41-89c0-405d6e7c6ad2" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +66,7 @@
       <updated>1576245308232</updated>
       <workItem from="1576245311919" duration="600000" />
       <workItem from="1576248792566" duration="14000" />
+      <workItem from="1576261168316" duration="427000" />
     </task>
     <servers />
   </component>
