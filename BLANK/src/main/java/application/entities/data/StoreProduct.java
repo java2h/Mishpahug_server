@@ -1,12 +1,25 @@
 package application.entities.data;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
+@Entity
+@Table(name = "storeproduct")
+@ToString(exclude = {"name", "created"})
+@EqualsAndHashCode(of = {"name"})
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Slf4j
 public class StoreProduct {
 
     @Id
@@ -17,8 +30,13 @@ public class StoreProduct {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "manufactorer")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "manufactorer_of_product")
+    @JsonBackReference("manufactorerofproduct")
     private Manufactorer manufactorer;
+
+    @ManyToMany(mappedBy = "projects")
+    private Set<Manufactorer> employees = new HashSet<>();
 
     @Column(name = "price")
     private Float price;
@@ -29,5 +47,7 @@ public class StoreProduct {
     @Column(name = "updated")
     private DateTime updated;
 
-
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JsonManagedReference("productofattribute")
+    private Set<StoreProductAttributeRef> attributeRefSet;
 }

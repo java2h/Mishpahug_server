@@ -1,9 +1,11 @@
 package application.entities.data;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "storeattribute")
@@ -35,4 +37,7 @@ public class StoreAttribute {
     private Integer useInCompare;
 
 
+    @OneToMany(mappedBy = "attribute", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JsonManagedReference("attributeofproduct")
+    private Set<StoreProductAttributeRef> productAttributeRefs;
 }
