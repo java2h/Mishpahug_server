@@ -1,5 +1,6 @@
 package application.entities;
 
+import application.entities.data.Manufactorer;
 import application.utils.ImageUtils;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
@@ -40,16 +41,18 @@ public class UserEntity {
     @Column(name = "phonenumber")
     private String phoneNumber;
 
-    @NotNull
-    @lombok.NonNull
+    @NonNull
     @Column(name = "email", nullable = false)
     private String eMail;
 
-    @NotNull
-    @lombok.NonNull
+    @NonNull
     @Column(name = "username", length = 36, nullable = false)
     @Setter(AccessLevel.NONE)
     private String userName;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Manufactorer_Id", referencedColumnName = "Id")
+    private Manufactorer manufactorer;
 
     @Column(name = "Encryted_Password", length = 128)
     /*
