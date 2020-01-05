@@ -1,6 +1,5 @@
 package application.entities;
 
-import application.entities.data.Manufactorer;
 import application.utils.ImageUtils;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
@@ -17,7 +16,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = {"email"}), @UniqueConstraint(columnNames = {"username"})})
-@ToString(exclude = {"eventItemsOwner", "subscriptions", "pictureItems"})
+@ToString
 @EqualsAndHashCode(of = {"userName"})
 @Getter
 @Setter
@@ -49,10 +48,6 @@ public class UserEntity {
     @Column(name = "username", length = 36, nullable = false)
     @Setter(AccessLevel.NONE)
     private String userName;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Manufactorer_Id", referencedColumnName = "Id")
-    private Manufactorer manufactorer;
 
     @Column(name = "Encryted_Password", length = 128)
     /*

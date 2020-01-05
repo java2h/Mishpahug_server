@@ -8,7 +8,7 @@ import javax.persistence.PreRemove;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-@ToString(exclude = {"eventItemsOwner", "subscriptions", "pictureItems"})
+@ToString
 @EqualsAndHashCode(of = {"userName"})
 @Getter
 @Setter
@@ -23,6 +23,7 @@ public class UserDTO {
     private String eMail;
     private String userName;
     private LocalDate dateOfBirth;
+    @Builder.Default
     private UserStatus status = UserStatus.ACTIVE;
     public enum UserStatus implements StatusChanger {
         ACTIVE(u -> u.activate()), DEACTIVATED(u -> u.deactivate()), PENDINGFORDELETION(u -> u.putIntoDeletionQueue());

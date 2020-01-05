@@ -38,4 +38,28 @@ public class DBLoaderConfig {
 		return new UserLoader(bufferedReader);	
 	}
 
+	@Bean(name = "salLoader")
+	public ILoader salLoader() {
+		createBufferedReader(MPHEntity.SAL);
+		return new SalLoader(bufferedReader);
+	}
+
+	@Bean(name = "sampleLoader")
+	public ILoader sampleLoader() {
+		createBufferedReader(MPHEntity.SAMPLE);
+		return new SampleLoader(bufferedReader);
+	}
+
+	@Bean(name = "itemLoader")
+	public ILoader itemLoader() {
+		createBufferedReader(MPHEntity.ITEM);
+		return new ItemLoader(bufferedReader);
+	}
+
+	@Bean(name = "ishurLoader")
+	public ILoader ishurLoader() {
+		createBufferedReader(MPHEntity.ISHUR);
+		return new IshurLoader(bufferedReader);
+	}
+
 }

@@ -13,6 +13,18 @@ public class LoaderDependencies { //TODO: stability risk with public access modi
 	@Autowired
 	public UserRepository userRepository;
 
+	@Autowired
+	public SampleRepository sampleRepository;
+
+	@Autowired
+	public SalRepository salRepository;
+
+	@Autowired
+	public IshurRepository ishurRepository;
+
+	@Autowired
+	public ItemRepository itemRepository;
+
 	public LoaderDependencies() {
 	}
 }

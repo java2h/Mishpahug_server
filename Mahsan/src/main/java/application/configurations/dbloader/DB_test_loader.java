@@ -20,10 +20,32 @@ public class DB_test_loader implements CommandLineRunner {
 	@Qualifier("userLoader")
 	private ILoader userLoader;
 
+	@Autowired
+	@Qualifier("salLoader")
+	private ILoader salLoader;
+
+	@Autowired
+	@Qualifier("sampleLoader")
+	private ILoader sampleLoader;
+
+	@Autowired
+	@Qualifier("itemLoader")
+	private ILoader itemLoader;
+
+	@Autowired
+	@Qualifier("ishurLoader")
+	private ILoader ishurLoader;
+
+
 	@Override
 	public void run(String... args) throws Exception {
 
 		loadTest(MPHEntity.USER);
+		loadTest(MPHEntity.SAL);
+		loadTest(MPHEntity.SAMPLE);
+		loadTest(MPHEntity.ITEM);
+		loadTest(MPHEntity.ISHUR);
+
 		loadTest(MPHEntity.LOGS);
 
 	}
@@ -31,14 +53,29 @@ public class DB_test_loader implements CommandLineRunner {
 	public void loadTest(MPHEntity entity) {
 
 		switch (entity) {
-		case USER: {
-			userLoader.load();
-			break;
+			case USER: {
+				userLoader.load();
+				break;
+			}
+			case SAL: {
+				userLoader.load();
+				break;
+			}
+			case SAMPLE: {
+				userLoader.load();
+				break;
+			}
+			case ITEM: {
+				userLoader.load();
+				break;
+			}
+			case ISHUR: {
+				userLoader.load();
+				break;
+			}
 		}
-		}
-
 	}
-
+}
 	/*
 	 * List<TemplateEntity> templateEntities = templateRepository.findAll(); for
 	 * (TemplateEntity x:templateEntities ) { JPGDocumentFormat jpgDocumentFormat =
@@ -51,4 +88,4 @@ public class DB_test_loader implements CommandLineRunner {
 	 */
 
 
-}
+
