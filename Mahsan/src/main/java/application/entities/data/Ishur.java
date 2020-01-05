@@ -31,4 +31,7 @@ public class Ishur {
     @Builder.Default
     private Set<Sal> sals = new HashSet<>();
 
+    @ElementCollection
+    @Builder.Default
+    private Set<Item> items = new HashSet<>();
 }
