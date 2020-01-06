@@ -38,4 +38,5 @@ public class Item {
     @JoinColumn(name="sample_id", nullable=false)
     private Sample sample;
 
+
 }
