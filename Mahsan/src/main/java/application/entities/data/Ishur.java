@@ -34,4 +34,8 @@ public class Ishur {
     @ElementCollection
     @Builder.Default
     private Set<Item> items = new HashSet<>();
+
+    @ElementCollection
+    @Builder.Default
+    private Set<String> notFoundItems = new HashSet<>();
 }
