@@ -1,24 +1,13 @@
 package application.utils;
 
+import java.time.LocalDate;
 import java.util.Random;
 
-public class RandomString {
+public class RandomDate {
 	
 	private static Random random = new Random();
-	public static String genText(int a, int b) {
-
-		int leftLimit = a; // letter 'a'
-		int rightLimit = b; // letter 'z'
-		int targetStringLength = 10;
-		StringBuilder buffer = new StringBuilder(targetStringLength);
-		for (int i = 0; i < targetStringLength; i++) {
-			int randomLimitedInt = leftLimit + (int)
-					(random.nextFloat() * (rightLimit - leftLimit + 1));
-			buffer.append((char) randomLimitedInt);
-		}
-		String generatedString = buffer.toString();
-
-		return generatedString;
+	public static LocalDate genDate() {
+		return LocalDate.of(1960 + (int)(random.nextFloat() * 60),1 + (int)(random.nextFloat() * 11),1 + (int)(random.nextFloat() * 28));
 	}
 
 }

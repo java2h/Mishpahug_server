@@ -13,6 +13,19 @@ public class LoaderDependencies { //TODO: stability risk with public access modi
 	@Autowired
 	public UserRepository userRepository;
 
+	@Autowired
+	public SensorRepository sensorRepository;
+
+	@Autowired
+	public DeviceRepository deviceRepository;
+
+	@Autowired
+	public  ArduinoRepository arduinoRepository;
+
+	@Autowired
+	public OptionRepository optionRepository;
+
+
 	public LoaderDependencies() {
 	}
 }

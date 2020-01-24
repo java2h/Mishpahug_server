@@ -5,14 +5,12 @@ import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.sql.Time;
 import java.util.Set;
 
 @Entity
 @Table(name = "arduino")
-@ToString(exclude = {"ipaddress", "description", "description"})
-@EqualsAndHashCode(of = {"ipaddress", "description"})
+@ToString(exclude = {"ipaddress", "description", "type"})
+@EqualsAndHashCode(of = {"ipaddress", "type"})
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,7 +18,7 @@ import java.util.Set;
 @Builder
 @Slf4j
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class ArduinoEntity {
+public class Arduino {
 
     @Id
     @Column(name = "Id", nullable = false)
@@ -36,9 +34,9 @@ public class ArduinoEntity {
     @Column(name = "type")
     private Integer type; // 0-relay 1-dimmer 2-sensor
 
-    @OneToMany(mappedBy="arduinoEntity")
-    private Set<DeviceEntity> deviceEntitySet;
+    @OneToMany(mappedBy="arduino")
+    private Set<Device> deviceSet;
 
-    @OneToMany(mappedBy="arduinoEntity")
-    private Set<SensorEntity> sensorEntitySet;
+    @OneToMany(mappedBy="arduino")
+    private Set<Sensor> sensorSet;
 }

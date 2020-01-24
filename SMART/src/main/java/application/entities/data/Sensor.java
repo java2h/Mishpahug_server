@@ -18,7 +18,7 @@ import java.util.Set;
 @Builder
 @Slf4j
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class SensorEntity {
+public class Sensor {
 
     @Id
     @Column(name = "Id", nullable = false)
@@ -35,16 +35,16 @@ public class SensorEntity {
     private String macAddress;
 
     @ManyToOne
-    @JoinColumn(name="arduinoEntity_id", nullable=false)
-    private ArduinoEntity arduinoEntity;
+    @JoinColumn(name="arduino_id", nullable=false)
+    private Arduino arduino;
 
     @Column(name = "pin")
     private Integer pin;
 
-    @OneToMany(mappedBy="sensorEntity")
-    private Set<OptionEntity> optionEntitySet;
+    @OneToMany(mappedBy="sensor")
+    private Set<Option> optionSet;
 
-    @OneToOne(mappedBy = "sensorEntity")
-    private ValueEntity valueEntity;
+    @OneToOne(mappedBy = "sensor")
+    private Value value;
 
 }

@@ -19,7 +19,7 @@ import java.sql.Time;
 @Builder
 @Slf4j
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class ValueEntity {
+public class Value {
 
     @Id
     @Column(name = "Id", nullable = false)
@@ -34,7 +34,7 @@ public class ValueEntity {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "sensor_id", referencedColumnName = "id")
-    private SensorEntity sensor;
+    private Sensor sensor;
 
     @Column(name = "data")
     private String data;

@@ -24,9 +24,32 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
+
+                .antMatchers(HttpMethod.GET,"/sensor/").permitAll()
+                .antMatchers(HttpMethod.POST,"/sensor/").permitAll()
+                .antMatchers(HttpMethod.PUT,"/sensor/").permitAll()
+                .antMatchers(HttpMethod.DELETE,"/sensor/").permitAll()
+
+                .antMatchers(HttpMethod.GET,"/option/").permitAll()
+                .antMatchers(HttpMethod.POST,"/option/").permitAll()
+                .antMatchers(HttpMethod.PUT,"/option/").permitAll()
+                .antMatchers(HttpMethod.DELETE,"/option/").permitAll()
+
+                .antMatchers(HttpMethod.GET,"/device/").permitAll()
+                .antMatchers(HttpMethod.POST,"/device/").permitAll()
+                .antMatchers(HttpMethod.PUT,"/device/").permitAll()
+                .antMatchers(HttpMethod.DELETE,"/device/").permitAll()
+
+                .antMatchers(HttpMethod.GET,"/arduino/").permitAll()
+                .antMatchers(HttpMethod.POST,"/arduino/").permitAll()
+                .antMatchers(HttpMethod.DELETE,"/arduino/").permitAll()
+                .antMatchers(HttpMethod.PUT,"/arduino/").permitAll()
+
                 .antMatchers("/user/login", "/user/register").anonymous()
-                .antMatchers(HttpMethod.GET,"/event/").permitAll()
                 .antMatchers(HttpMethod.GET,"/user/").permitAll()
+                .antMatchers(HttpMethod.POST,"/user/").permitAll()
+                .antMatchers(HttpMethod.PUT,"/user/").permitAll()
+                .antMatchers(HttpMethod.DELETE,"/user/").permitAll()
 
                 .anyRequest().authenticated();
         http.addFilterBefore(securityFilter(), UsernamePasswordAuthenticationFilter.class);

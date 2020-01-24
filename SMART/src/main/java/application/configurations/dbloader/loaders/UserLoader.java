@@ -2,6 +2,8 @@ package application.configurations.dbloader.loaders;
 
 import application.configurations.dbloader.LoaderDependencies;
 import application.entities.UserEntity;
+import application.utils.RandomDate;
+import application.utils.RandomString;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +46,10 @@ public class UserLoader implements ILoader {
 				String[] data = detail.split("!");
 				UserEntity user = new UserEntity(data[0].split("@")[0], data[0]);
 				user.setEncrytedPassword(DigestUtils.md5Hex((data[0].split("@")[0])));
+				user.setPhoneNumber(RandomString.genText(48,57));
+				user.setDateOfBirth(RandomDate.genDate());
+				user.setFirstName(RandomString.genText(97,122));
+				user.setLastName(RandomString.genText(97,122));
 				user.activate();
 				user.loadAvatar("av.png");
 				log.debug("DBLoadTest -> UserLoader -> userentity = " + user);

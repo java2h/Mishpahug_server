@@ -16,7 +16,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = {"email"}), @UniqueConstraint(columnNames = {"username"})})
-@ToString(exclude = {"eventItemsOwner", "subscriptions", "pictureItems"})
+@ToString()
 @EqualsAndHashCode(of = {"userName"})
 @Getter
 @Setter

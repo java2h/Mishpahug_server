@@ -17,7 +17,7 @@ import javax.persistence.*;
 @Builder
 @Slf4j
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class OptionEntity {
+public class Option {
 
     @Id
     @Column(name = "Id", nullable = false)
@@ -25,12 +25,12 @@ public class OptionEntity {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name="deviceEntity_id", nullable=false)
-    private DeviceEntity deviceEntity;
+    @JoinColumn(name="device_id", nullable=false)
+    private Device device;
 
     @ManyToOne
-    @JoinColumn(name="sensorEntity_id", nullable=false)
-    private SensorEntity sensorEntity;
+    @JoinColumn(name="sensor_id", nullable=false)
+    private Sensor sensor;
 
     @Column(name = "description")
     private String description;
@@ -44,5 +44,8 @@ public class OptionEntity {
     @Column(name = "type")
     private Integer type;
 
+    @Column(name = "iftype")
+    private Integer ifType;
+    // 0= 1< 2>
 
 }

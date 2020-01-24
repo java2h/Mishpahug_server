@@ -18,7 +18,7 @@ package application.entities.data;
 @Builder
 @Slf4j
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class DeviceEntity {
+public class Device {
 
     @Id
     @Column(name = "Id", nullable = false)
@@ -32,14 +32,14 @@ public class DeviceEntity {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name="arduinoEntity_id", nullable=false)
-    private ArduinoEntity arduinoEntity;
+    @JoinColumn(name="arduino_id", nullable=false)
+    private Arduino arduino;
 
     @Column(name = "pin")
     private Integer pin;
 
-    @OneToMany(mappedBy="deviceEntity")
-    private Set<OptionEntity> optionEntitySet;
+    @OneToMany(mappedBy="device")
+    private Set<Option> optionSet;
 
 
 }
