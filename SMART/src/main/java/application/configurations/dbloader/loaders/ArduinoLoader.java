@@ -31,9 +31,8 @@ public class ArduinoLoader implements ILoader {
 	@Override
 	public void load() {
 		try {
-			/*this.data.userRepository.findAll().forEach(UserEntity::putIntoDeletionQueue);
-			this.data.userRepository.deleteAll();
-			this.data.userRepository.flush();*/
+			this.data.arduinoRepository.deleteAll();
+			this.data.arduinoRepository.flush();
 			//do we need flush here?
 			// need
 			// https://stackoverflow.com/questions/49595852/deleteall-in-repository-randomly-causes-constraintviolationexception

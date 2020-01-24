@@ -20,10 +20,31 @@ public class DB_test_loader implements CommandLineRunner {
 	@Qualifier("userLoader")
 	private ILoader userLoader;
 
+	@Autowired
+	@Qualifier("arduinoLoader")
+	private ILoader arduinoLoader;
+
+	@Autowired
+	@Qualifier("deviceLoader")
+	private ILoader deviceLoader;
+
+	@Autowired
+	@Qualifier("sensorLoader")
+	private ILoader sensorLoader;
+
+	@Autowired
+	@Qualifier("optionLoader")
+	private ILoader optionLoader;
+
+
 	@Override
 	public void run(String... args) throws Exception {
 
 		loadTest(MPHEntity.USER);
+		loadTest(MPHEntity.ARDUINO);
+		loadTest(MPHEntity.SENSOR);
+		loadTest(MPHEntity.DEVICE);
+		loadTest(MPHEntity.OPTIONS);
 		loadTest(MPHEntity.LOGS);
 
 	}
@@ -35,6 +56,23 @@ public class DB_test_loader implements CommandLineRunner {
 			userLoader.load();
 			break;
 		}
+			case ARDUINO: {
+			arduinoLoader.load();
+			break;
+		}
+			case DEVICE: {
+			deviceLoader.load();
+			break;
+		}
+			case SENSOR: {
+			sensorLoader.load();
+			break;
+		}
+			case OPTIONS: {
+			optionLoader.load();
+			break;
+		}
+
 		}
 
 	}
