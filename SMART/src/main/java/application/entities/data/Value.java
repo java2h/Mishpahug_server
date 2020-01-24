@@ -32,6 +32,10 @@ public class ValueEntity {
     @Column(name = "time")
     private Time time;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "sensor_id", referencedColumnName = "id")
+    private SensorEntity sensor;
+
     @Column(name = "data")
     private String data;
 }

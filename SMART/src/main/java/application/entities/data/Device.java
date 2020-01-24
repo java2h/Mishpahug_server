@@ -5,6 +5,7 @@ package application.entities.data;
         import lombok.extern.slf4j.Slf4j;
 
         import javax.persistence.*;
+        import java.util.Set;
 
 @Entity
 @Table(name = "device")
@@ -30,11 +31,15 @@ public class DeviceEntity {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "iparduino")
-    private String ipArduino;
+    @ManyToOne
+    @JoinColumn(name="arduinoEntity_id", nullable=false)
+    private ArduinoEntity arduinoEntity;
 
-    @Column(name = "port")
-    private Integer port;
+    @Column(name = "pin")
+    private Integer pin;
+
+    @OneToMany(mappedBy="deviceEntity")
+    private Set<OptionEntity> optionEntitySet;
 
 
 }
