@@ -37,25 +37,20 @@ public class DBLoaderConfig {
 		createBufferedReader(MPHEntity.USER);
 		return new UserLoader(bufferedReader);	
 	}
-	@Bean(name = "arduinoLoader")
-	public ILoader arduinoLoader() {
-		createBufferedReader(MPHEntity.ARDUINO);
-		return new UserLoader(bufferedReader);
-	}
 	@Bean(name = "deviceLoader")
 	public ILoader deviceLoader() {
 		createBufferedReader(MPHEntity.DEVICE);
-		return new UserLoader(bufferedReader);
+		return new DeviceLoader(bufferedReader);
 	}
 	@Bean(name = "sensorLoader")
 	public ILoader sensorLoader() {
 		createBufferedReader(MPHEntity.SENSOR);
-		return new UserLoader(bufferedReader);
+		return new SensorLoader(bufferedReader);
 	}
 	@Bean(name = "optionLoader")
 	public ILoader optionLoader() {
 		createBufferedReader(MPHEntity.OPTIONS);
-		return new UserLoader(bufferedReader);
+		return new OptionsLoader(bufferedReader);
 	}
 
 }

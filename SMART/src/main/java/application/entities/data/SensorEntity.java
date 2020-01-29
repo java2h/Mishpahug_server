@@ -25,8 +25,8 @@ public class SensorEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "nameSensor")
+    private String nameSensor;
 
     @Column(name = "description")
     private String description;
@@ -34,17 +34,16 @@ public class SensorEntity {
     @Column(name = "macaddress")
     private String macAddress;
 
-    @ManyToOne
-    @JoinColumn(name="arduino_id", nullable=false)
-    private ArduinoEntity arduino;
+    @Column(name = "ipaddress")
+    private String ipaddress;
+
+    @Column(name = "value")
+    private Float value;
 
     @Column(name = "pin")
     private Integer pin;
 
     @OneToMany(mappedBy="sensor")
-    private Set<OptionEntity> optionSet;
+    private Set<OptionEntity> optionEntities;
 
-    @OneToOne(mappedBy = "sensor")
-    private Value value;
-
-}
+    }

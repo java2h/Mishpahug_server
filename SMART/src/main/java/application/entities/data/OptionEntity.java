@@ -1,15 +1,24 @@
 package application.entities.data;
 
+import application.dtoes.data.OptionDTO;
+import application.models.data.device.DeviceModel;
+import application.models.data.device.IDeviceModel;
+import application.models.data.sensor.ISensorModel;
+import application.repositories.DeviceRepository;
+import application.repositories.SensorRepository;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
-@Table(name = "option")
-@ToString(exclude = {"name", "port", "description"})
-@EqualsAndHashCode(of = {"name"})
+@Table(name = "optionz")
+@ToString(exclude = {"device", "sensor"})
+@EqualsAndHashCode(of = {"nameOption"})
 @Getter
 @Setter
 @AllArgsConstructor
@@ -30,22 +39,26 @@ public class OptionEntity {
 
     @ManyToOne
     @JoinColumn(name="sensor_id", nullable=false)
-    private Sensor sensor;
+    private SensorEntity sensor;
 
     @Column(name = "description")
     private String description;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "nameOption")
+    private String nameOption;
 
-    @Column(name = "port")
-    private Integer port;
+    @Column(name = "data")
+    private Float data;
 
-    @Column(name = "type")
+    @Column(name = "types")
     private Integer type;
 
     @Column(name = "iftype")
     private Integer ifType;
     // 0= 1< 2>
+    @Column(name = "dates")
+    private LocalDate dateS;
 
+    @Column(name = "times")
+    private LocalTime timeS;
 }

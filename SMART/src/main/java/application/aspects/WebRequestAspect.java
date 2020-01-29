@@ -20,6 +20,7 @@ public class WebRequestAspect {
 	@Pointcut("within(application.controllers..*)")
 	public void webPointCut() {
 	};
+
 	
 
 	@Around("webPointCut() && args(httpHeaders, request,..)")
@@ -36,7 +37,7 @@ public class WebRequestAspect {
 		});
 		log.info(targetClass + " -> " + targetMethod + " -> Remote IP -> " + request.getRemoteAddr());
 		log.info(targetClass + " -> " + targetMethod + " -> Remote Host -> " + request.getRemoteHost());
-		log.info(targetClass + " -> " + targetMethod + " -> Local name -> " + request.getLocalName());
+		log.info(targetClass + " -> " + targetMethod + " -> Local nameOption -> " + request.getLocalName());
 		log.info(targetClass + " -> " + targetMethod + " -> Path info -> " + request.getPathInfo());
 		log.info(targetClass + " -> " + targetMethod + " -> Protocol -> " + request.getProtocol());
 		log.info(targetClass + " -> " + targetMethod + " -> Scheme -> " + request.getScheme());

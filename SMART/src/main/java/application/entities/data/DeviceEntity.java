@@ -9,8 +9,8 @@ package application.entities.data;
 
 @Entity
 @Table(name = "device")
-@ToString(exclude = {"iparduino", "port", "description"})
-@EqualsAndHashCode(of = {"name"})
+@ToString(exclude = {"optionEntities"})
+@EqualsAndHashCode(of = {"nameDevice"})
 @Getter
 @Setter
 @AllArgsConstructor
@@ -28,18 +28,15 @@ public class DeviceEntity {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "nameDevice")
+    private String nameDevice;
 
-    @ManyToOne
-    @JoinColumn(name="arduino_id", nullable=false)
-    private Arduino arduino;
+    @Column(name = "ipaddress")
+    private String ipaddress;
 
     @Column(name = "pin")
     private Integer pin;
 
     @OneToMany(mappedBy="device")
-    private Set<Option> optionSet;
-
-
+    private Set<OptionEntity> optionEntities;
 }

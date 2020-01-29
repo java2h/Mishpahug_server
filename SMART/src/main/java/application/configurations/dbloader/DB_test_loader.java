@@ -21,10 +21,6 @@ public class DB_test_loader implements CommandLineRunner {
 	private ILoader userLoader;
 
 	@Autowired
-	@Qualifier("arduinoLoader")
-	private ILoader arduinoLoader;
-
-	@Autowired
 	@Qualifier("deviceLoader")
 	private ILoader deviceLoader;
 
@@ -39,9 +35,7 @@ public class DB_test_loader implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-
 		loadTest(MPHEntity.USER);
-		loadTest(MPHEntity.ARDUINO);
 		loadTest(MPHEntity.SENSOR);
 		loadTest(MPHEntity.DEVICE);
 		loadTest(MPHEntity.OPTIONS);
@@ -54,10 +48,6 @@ public class DB_test_loader implements CommandLineRunner {
 		switch (entity) {
 		case USER: {
 			userLoader.load();
-			break;
-		}
-			case ARDUINO: {
-			arduinoLoader.load();
 			break;
 		}
 			case DEVICE: {
@@ -82,9 +72,9 @@ public class DB_test_loader implements CommandLineRunner {
 	 * (TemplateEntity x:templateEntities ) { JPGDocumentFormat jpgDocumentFormat =
 	 * new JPGDocumentFormat();
 	 * jpgDocumentFormat.createInvitationFromTemplate("d://211.jpeg", "d://" +
-	 * x.getName() + ".jpg", "fontname", 8, x, 1 , 1);
+	 * x.getNameOption() + ".jpg", "fontname", 8, x, 1 , 1);
 	 * EMailSender.sender("mishpahug2019@gmail.com", "marina1986ANGEL", "test",
-	 * "dfgsdfgsdfg", "mrcolombo1985remote@gmail.com", "d://" + x.getName() +
+	 * "dfgsdfgsdfg", "mrcolombo1985remote@gmail.com", "d://" + x.getNameOption() +
 	 * ".jpg"); }
 	 */
 

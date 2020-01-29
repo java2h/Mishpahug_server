@@ -132,7 +132,7 @@ public class UserEntity {
         try {
             newStatus = UserStatus.valueOf(status);
         } catch (Exception e) {
-            throw new IllegalArgumentException("Not found UserStatus with name " + status);
+            throw new IllegalArgumentException("Not found UserStatus with nameOption " + status);
         }
         newStatus.change(this);
     }

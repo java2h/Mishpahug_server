@@ -38,7 +38,7 @@ public class SecurityFilter extends OncePerRequestFilter {
                 String usernameForController = userSession.getUserName();
 
                 if (usernameForController == null) {
-                    usernameForController = "no name";
+                    usernameForController = "no nameOption";
                 }
                 Authentication key = new UsernamePasswordAuthenticationToken(
                         usernameForController,

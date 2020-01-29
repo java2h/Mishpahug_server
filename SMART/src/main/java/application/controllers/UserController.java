@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.security.auth.login.FailedLoginException;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 @Slf4j
@@ -57,15 +59,11 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/")
     @ResponseBody
-    public Iterable<UserEntity> findAllByWebQuerydsl(@RequestHeader HttpHeaders httpHeaders, HttpServletRequest request,
+    public Iterable<UserDTO> findAllByWebQuerydsl(@RequestHeader HttpHeaders httpHeaders, HttpServletRequest request,
                                                  @QuerydslPredicate(root = UserEntity.class) Predicate predicate) {
-        return userModel.getAll(predicate);
-    }
-
-    @GetMapping(value = "/{id}")
-    public UserDTO get(@RequestHeader HttpHeaders httpHeaders, HttpServletRequest request,
-                       @PathVariable(value = "id") Integer id) {
-        return new UserDTO(userModel.getById(id));
+        List<UserDTO> userDTOS = new ArrayList<>();
+        userModel.getAll(predicate).forEach(x -> userDTOS.add(new UserDTO(x)));
+        return userDTOS;
     }
 
     @PostMapping(value = "/login")

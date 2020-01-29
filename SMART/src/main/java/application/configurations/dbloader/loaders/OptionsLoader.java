@@ -1,16 +1,19 @@
 package application.configurations.dbloader.loaders;
 
 import application.configurations.dbloader.LoaderDependencies;
-import application.entities.UserEntity;
+import application.entities.data.DeviceEntity;
+import application.entities.data.OptionEntity;
+import application.entities.data.SensorEntity;
 import application.utils.RandomDate;
 import application.utils.RandomString;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.transaction.Transactional;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.List;
+import java.util.Random;
 
 /**
  * Loads users
@@ -31,14 +34,28 @@ public class OptionsLoader implements ILoader {
 	@Override
 	public void load() {
 		try {
+			Random rr = new Random();
 			this.data.optionRepository.deleteAll();
 			this.data.optionRepository.flush();
+			List<SensorEntity> sensorEntityList = this.data.sensorRepository.findAll();
+			Integer sensorMax = sensorEntityList.size() - 1;
+			List<DeviceEntity> deviceEntityList = this.data.deviceRepository.findAll();
+			Integer deviceMax = deviceEntityList.size() - 1;
 			//do we need flush here?
 			// need
 			// https://stackoverflow.com/questions/49595852/deleteall-in-repository-randomly-causes-constraintviolationexception
 			String detail;
-			while ((detail = br.readLine()) != null) {
-
+			for (int i = 0; i < 1024; i++) {
+				OptionEntity entity = new OptionEntity();
+				entity.setDevice(deviceEntityList.get(rr.nextInt(deviceMax)));
+				entity.setSensor(sensorEntityList.get(rr.nextInt(sensorMax)));
+				entity.setTimeS(RandomDate.genTime());
+				entity.setDateS(RandomDate.genDate());
+				entity.setIfType(rr.nextInt(1024)%3);
+				entity.setType(rr.nextInt(1024)%3);
+				entity.setNameOption(RandomString.genText(97, 122));
+				entity.setDescription(RandomString.genText(97, 122));
+				this.data.optionRepository.save(entity);
 			}
 			log.debug("DBLoadTest -> OptionLoader -> In repository " + this.data.optionRepository.findAll().size() + " records");
 			br.close();

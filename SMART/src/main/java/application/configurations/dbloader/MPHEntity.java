@@ -7,11 +7,6 @@ public enum MPHEntity {
 			return "data_user.csv";
 		}
 	},
-	ARDUINO {
-		public String dataFile() {
-			return "data_arduino.csv";
-		}
-	},
 	DEVICE {
 		public String dataFile() {
 			return "data_device.csv";

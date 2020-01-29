@@ -1,6 +1,6 @@
 package application.dtoes.data;
 
-import application.entities.data.Sensor;
+import application.entities.data.SensorEntity;
 import lombok.*;
 
 @AllArgsConstructor
@@ -15,10 +15,9 @@ public class SensorDTO {
     private String address;
     private String ipAddress;
 
-    public SensorDTO(Sensor data) {
-        this.name = data.getName();
+    public SensorDTO(SensorEntity data) {
+        this.name = data.getNameSensor();
         this.description = data.getDescription();
         this.address = data.getMacAddress();
-        this.ipAddress = data.getArduino().getIpaddress();
     }
 }

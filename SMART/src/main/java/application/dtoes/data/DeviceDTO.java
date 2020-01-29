@@ -1,6 +1,7 @@
 package application.dtoes.data;
 
-import application.entities.data.Device;
+import application.entities.data.DeviceEntity;
+import application.entities.data.DeviceEntity;
 import lombok.*;
 
 @AllArgsConstructor
@@ -15,10 +16,9 @@ public class DeviceDTO {
     private Integer pin;
     private String ipAddress;
 
-    public DeviceDTO(Device data) {
-        this.name = data.getName();
+    public DeviceDTO(DeviceEntity data) {
+        this.name = data.getNameDevice();
         this.description = data.getDescription();
-        this.ipAddress = data.getArduino().getIpaddress();
         this.pin = data.getPin();
     }
 }
