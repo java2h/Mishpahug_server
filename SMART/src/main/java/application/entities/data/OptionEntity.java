@@ -17,7 +17,7 @@ import javax.persistence.*;
 @Builder
 @Slf4j
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Option {
+public class OptionEntity {
 
     @Id
     @Column(name = "Id", nullable = false)
@@ -26,7 +26,7 @@ public class Option {
 
     @ManyToOne
     @JoinColumn(name="device_id", nullable=false)
-    private Device device;
+    private DeviceEntity device;
 
     @ManyToOne
     @JoinColumn(name="sensor_id", nullable=false)
