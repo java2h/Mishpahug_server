@@ -1,8 +1,9 @@
-package application.configurations;
+package application.configurations.scheduler;
 
 import application.entities.data.OptionEntity;
 import application.repositories.DeviceRepository;
 import application.repositories.OptionRepository;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.RequestEntity;
@@ -10,10 +11,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
+import java.net.InetAddress;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.UnknownHostException;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -36,62 +41,81 @@ public class CheckingData {
     @Autowired
     DeviceRepository deviceRepository;
 
+    byte[] bytes;
+
+    InetAddress inetAddress;
+
     private void scheduleFixedDelayTaskMethod(Integer num){
         if (deviceRepository.findAll().size()>num)
         {
             List<OptionEntity> optionEntityList = optionRepository.getByDevice_Id(num);
             //System.out.println("scheduleFixedDelayTask -> Number = " + num + " -> Size -> " + optionEntityList.size());
             optionEntityList.forEach(z -> {
-                //System.out.println("scheduleFixedDelayTask - " + num + " -> data = " + z);
-                //TODO написать прохождение по значениям
-                switch (z.getType()){
-                    case  0:{
-                            //TODO Sensor
-                        switch (z.getIfType()){
-                            case 0:{
-                                if (z.getSensor().getValue() > z.getData())
-                                {
-                                    sendIP = z.getDevice().getIpaddress();
-                                    sendPIN = z.getDevice().getPin();
-                                    sendCOM = z.getCommand();
+                String[] ipAddress = z.getDevice().getIpaddress().split(".");
+                bytes[0] = Byte.valueOf(bytes[0]);
+                bytes[1] = Byte.valueOf(bytes[1]);
+                bytes[2] = Byte.valueOf(bytes[2]);
+                bytes[3] = Byte.valueOf(bytes[3]);
+                try {
+                    inetAddress = InetAddress.getByAddress(bytes);
+                } catch (UnknownHostException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    if ( !inetAddress.isReachable(60)) return;
+                    //System.out.println("scheduleFixedDelayTask - " + num + " -> data = " + z);
+                    //TODO написать прохождение по значениям
+                    switch (z.getType()){
+                        case  0:{
+                                //TODO Sensor
+                            switch (z.getIfType()){
+                                case 0:{
+                                    if (z.getSensor().getValue() > z.getData())
+                                    {
+                                        sendIP = z.getDevice().getIpaddress();
+                                        sendPIN = z.getDevice().getPin();
+                                        sendCOM = z.getCommand();
+                                    }
+                                    break;
                                 }
-                                break;
-                            }
-                            case 1:{
-                                if ((z.getSensor().getValue() > z.getData() - delta) && (z.getSensor().getValue() < z.getData() + delta))
-                                {
-                                    sendIP = z.getDevice().getIpaddress();
-                                    sendPIN = z.getDevice().getPin();
-                                    sendCOM = z.getCommand();
+                                case 1:{
+                                    if ((z.getSensor().getValue() > z.getData() - delta) && (z.getSensor().getValue() < z.getData() + delta))
+                                    {
+                                        sendIP = z.getDevice().getIpaddress();
+                                        sendPIN = z.getDevice().getPin();
+                                        sendCOM = z.getCommand();
+                                    }
+                                    break;
                                 }
-                                break;
-                            }
-                            case 2:{
-                                if (z.getSensor().getValue() < z.getData())
-                                {
-                                    sendIP = z.getDevice().getIpaddress();
-                                    sendPIN = z.getDevice().getPin();
-                                    sendCOM = z.getCommand();
+                                case 2:{
+                                    if (z.getSensor().getValue() < z.getData())
+                                    {
+                                        sendIP = z.getDevice().getIpaddress();
+                                        sendPIN = z.getDevice().getPin();
+                                        sendCOM = z.getCommand();
+                                    }
+                                    break;
                                 }
-                                break;
                             }
+                            break;
                         }
-                        break;
-                    }
-                    case  1:{
-                            //TODO Time
-                        LocalDateTime dateTime = LocalDateTime.of(z.getDateS().getYear(), z.getDateS().getMonth(), z.getDateS().getDayOfMonth(), z.getTimeS().getHour(), z.getTimeS().getMinute());
-                        Date now = new Date();
-                        Instant curr = now.toInstant();
-                        LocalDateTime currentDT = LocalDateTime.ofInstant(curr, ZoneId.systemDefault());
-                        if (currentDT.isAfter(dateTime))
-                        {
-                            sendIP = z.getDevice().getIpaddress();
-                            sendPIN = z.getDevice().getPin();
-                            sendCOM = z.getCommand();
+                        case  1:{
+                                //TODO Time
+                            LocalDateTime dateTime = LocalDateTime.of(z.getDateS().getYear(), z.getDateS().getMonth(), z.getDateS().getDayOfMonth(), z.getTimeS().getHour(), z.getTimeS().getMinute());
+                            Date now = new Date();
+                            Instant curr = now.toInstant();
+                            LocalDateTime currentDT = LocalDateTime.ofInstant(curr, ZoneId.systemDefault());
+                            if (currentDT.isAfter(dateTime))
+                            {
+                                sendIP = z.getDevice().getIpaddress();
+                                sendPIN = z.getDevice().getPin();
+                                sendCOM = z.getCommand();
+                            }
+                            break;
                         }
-                        break;
                     }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
                 //TODO sending
                 String url = "http://" + sendIP;
@@ -102,7 +126,11 @@ public class CheckingData {
                 } catch (URISyntaxException e) {
                     e.printStackTrace();
                 }
-                ResponseEntity<String> responseS = restTemplate.exchange(request, String.class);
+                try {
+                    ResponseEntity<String> responseS = restTemplate.exchange(request, String.class);
+                } catch (RestClientException e) {
+                    e.printStackTrace();
+                }
             });
         }
 

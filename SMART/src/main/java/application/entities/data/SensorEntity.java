@@ -9,8 +9,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "sensor")
-@ToString(exclude = {"ipAddress", "macaddress", "description"})
-@EqualsAndHashCode(of = {"ipAddress", "macaddress", "description"})
+@ToString(exclude = {"ipaddress", "macAddress", "description"})
+@EqualsAndHashCode(of = {"ipaddress", "macAddress", "description"})
 @Getter
 @Setter
 @AllArgsConstructor

@@ -4,14 +4,14 @@ import application.configurations.dbloader.LoaderDependencies;
 import application.entities.data.DeviceEntity;
 import application.entities.data.OptionEntity;
 import application.entities.data.SensorEntity;
-import application.utils.RandomDate;
-import application.utils.RandomString;
+import application.utils.RandomGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.transaction.Transactional;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -30,7 +30,7 @@ public class OptionsLoader implements ILoader {
 	public OptionsLoader(BufferedReader br) {
 		this.br = br;
 	}
-
+	//TODO создать файл для генерации постоянных данных
 	@Override
 	public void load() {
 		try {
@@ -45,16 +45,16 @@ public class OptionsLoader implements ILoader {
 			// need
 			// https://stackoverflow.com/questions/49595852/deleteall-in-repository-randomly-causes-constraintviolationexception
 			String detail;
-			for (int i = 0; i < 1024; i++) {
+			for (int i = 0; i < 512; i++) {
 				OptionEntity entity = new OptionEntity();
 				entity.setDevice(deviceEntityList.get(rr.nextInt(deviceMax)));
 				entity.setSensor(sensorEntityList.get(rr.nextInt(sensorMax)));
-				entity.setTimeS(RandomDate.genTime());
-				entity.setDateS(RandomDate.genDate());
+				entity.setTimeS(RandomGenerator.genTime());
+				entity.setDateS(RandomGenerator.genDate());
 				entity.setIfType(rr.nextInt(1024)%3);
 				entity.setType(rr.nextInt(1024)%3);
-				entity.setNameOption(RandomString.genText(97, 122));
-				entity.setDescription(RandomString.genText(97, 122));
+				entity.setNameOption(RandomGenerator.genText(97, 122));
+				entity.setDescription(RandomGenerator.genText(97, 122));
 				this.data.optionRepository.save(entity);
 			}
 			log.debug("DBLoadTest -> OptionLoader -> In repository " + this.data.optionRepository.findAll().size() + " records");

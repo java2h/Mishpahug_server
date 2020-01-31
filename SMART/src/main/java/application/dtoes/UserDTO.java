@@ -8,7 +8,7 @@ import javax.persistence.PreRemove;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-@ToString(exclude = {"eventItemsOwner", "subscriptions", "pictureItems"})
+@ToString
 @EqualsAndHashCode(of = {"userName"})
 @Getter
 @Setter

@@ -48,7 +48,10 @@ public class OptionEntity {
     private String nameOption;
 
     @Column(name = "data")
-    private Float data;
+    private Integer data;
+
+    @Column(name = "command")
+    private Integer command;
 
     @Column(name = "types")
     private Integer type;

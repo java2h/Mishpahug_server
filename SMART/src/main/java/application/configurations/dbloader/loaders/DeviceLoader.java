@@ -2,14 +2,13 @@ package application.configurations.dbloader.loaders;
 
 import application.configurations.dbloader.LoaderDependencies;
 import application.entities.data.DeviceEntity;
-import application.utils.RandomString;
+import application.utils.RandomGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.transaction.Transactional;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -36,14 +35,15 @@ public class DeviceLoader implements ILoader {
 			//do we need flush here?
 			// need
 			// https://stackoverflow.com/questions/49595852/deleteall-in-repository-randomly-causes-constraintviolationexception
-
-			Random random = new Random();
-
-			for (int i = 0; i < 42; i++) {
+//TODO создать файл для генерации постоянных данных
+			String detail;
+			while ((detail = br.readLine()) != null) {
+				String[] data = detail.split("!");
 				DeviceEntity entity = new DeviceEntity();
-				entity.setDescription(RandomString.genText(97,122));
-				entity.setNameDevice(RandomString.genText(97,122));
-				entity.setPin(3);
+				entity.setDescription(data[2]);
+				entity.setNameDevice(data[0]);
+				entity.setPin(Integer.valueOf(data[3]));
+				entity.setIpaddress(data[1]);
 				this.data.deviceRepository.save(entity);
 			}
 			log.debug("DBLoadTest -> DeviceLoader -> In repository " + this.data.deviceRepository.findAll().size() + " records");

@@ -2,8 +2,7 @@ package application.configurations.dbloader.loaders;
 
 import application.configurations.dbloader.LoaderDependencies;
 import application.entities.UserEntity;
-import application.utils.RandomDate;
-import application.utils.RandomString;
+import application.utils.RandomGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Random;
+import java.util.Date;
 
 import javax.transaction.Transactional;
 
@@ -46,10 +44,10 @@ public class UserLoader implements ILoader {
 				String[] data = detail.split("!");
 				UserEntity user = new UserEntity(data[0].split("@")[0], data[0]);
 				user.setEncrytedPassword(DigestUtils.md5Hex((data[0].split("@")[0])));
-				user.setPhoneNumber(RandomString.genText(48,57));
-				user.setDateOfBirth(RandomDate.genDate());
-				user.setFirstName(RandomString.genText(97,122));
-				user.setLastName(RandomString.genText(97,122));
+				user.setPhoneNumber(RandomGenerator.genText(48,57));
+				user.setDateOfBirth(RandomGenerator.genDate());
+				user.setFirstName(RandomGenerator.genText(97,122));
+				user.setLastName(RandomGenerator.genText(97,122));
 				user.activate();
 				user.loadAvatar("av.png");
 				log.debug("DBLoadTest -> UserLoader -> userentity = " + user);

@@ -2,14 +2,13 @@ package application.configurations.dbloader.loaders;
 
 import application.configurations.dbloader.LoaderDependencies;
 import application.entities.data.SensorEntity;
-import application.utils.RandomString;
+import application.utils.RandomGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.transaction.Transactional;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -27,7 +26,7 @@ public class SensorLoader implements ILoader {
 	public SensorLoader(BufferedReader br) {
 		this.br = br;
 	}
-
+	//TODO создать файл для генерации постоянных данных
 	@Override
 	public void load() {
 		try {
@@ -41,11 +40,11 @@ public class SensorLoader implements ILoader {
 			String detail;
 			for (int i = 0; i < 32; i++) {
 				SensorEntity entity = new SensorEntity();
-				entity.setDescription(RandomString.genText(97,122));
-				entity.setNameSensor(RandomString.genText(97,122));
+				entity.setDescription(RandomGenerator.genText(97,122));
+				entity.setNameSensor(RandomGenerator.genText(97,122));
 				entity.setPin(3);
-				entity.setMacAddress(RandomString.genMAC());
-				entity.setIpaddress(RandomString.genMAC());
+				entity.setMacAddress(RandomGenerator.genMAC());
+				entity.setIpaddress(RandomGenerator.genMAC());
 				this.data.sensorRepository.save(entity);
 			}
 			log.debug("DBLoadTest -> SensorLoader -> In repository " + this.data.sensorRepository.findAll().size() + " records");
