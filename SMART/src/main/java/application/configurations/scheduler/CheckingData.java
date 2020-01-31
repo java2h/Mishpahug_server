@@ -4,10 +4,16 @@ import application.entities.data.OptionEntity;
 import application.repositories.DeviceRepository;
 import application.repositories.OptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -21,6 +27,8 @@ public class CheckingData {
     private String sendIP = "";
     private Integer sendPIN = -1;
     private  Integer sendCOM = 0;
+    public static final RestTemplate restTemplate = new RestTemplate();
+
 
     @Autowired
     OptionRepository optionRepository;
@@ -43,21 +51,27 @@ public class CheckingData {
                             case 0:{
                                 if (z.getSensor().getValue() > z.getData())
                                 {
-
+                                    sendIP = z.getDevice().getIpaddress();
+                                    sendPIN = z.getDevice().getPin();
+                                    sendCOM = z.getCommand();
                                 }
                                 break;
                             }
                             case 1:{
                                 if ((z.getSensor().getValue() > z.getData() - delta) && (z.getSensor().getValue() < z.getData() + delta))
                                 {
-
+                                    sendIP = z.getDevice().getIpaddress();
+                                    sendPIN = z.getDevice().getPin();
+                                    sendCOM = z.getCommand();
                                 }
                                 break;
                             }
                             case 2:{
                                 if (z.getSensor().getValue() < z.getData())
                                 {
-
+                                    sendIP = z.getDevice().getIpaddress();
+                                    sendPIN = z.getDevice().getPin();
+                                    sendCOM = z.getCommand();
                                 }
                                 break;
                             }
@@ -70,14 +84,25 @@ public class CheckingData {
                         Date now = new Date();
                         Instant curr = now.toInstant();
                         LocalDateTime currentDT = LocalDateTime.ofInstant(curr, ZoneId.systemDefault());
-                        if (dateTime.isAfter(currentDT))
+                        if (currentDT.isAfter(dateTime))
                         {
-
+                            sendIP = z.getDevice().getIpaddress();
+                            sendPIN = z.getDevice().getPin();
+                            sendCOM = z.getCommand();
                         }
                         break;
                     }
                 }
-
+                //TODO sending
+                String url = "http://" + sendIP;
+                String urn = "/in?pin=" + sendPIN.toString() + "&value=" + sendCOM;
+                RequestEntity<?> request = null;
+                try {
+                    request = new RequestEntity(null, HttpMethod.POST, new URI(url+urn));
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
+                ResponseEntity<String> responseS = restTemplate.exchange(request, String.class);
             });
         }
 
