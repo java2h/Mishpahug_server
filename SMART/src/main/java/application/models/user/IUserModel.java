@@ -1,5 +1,6 @@
 package application.models.user;
 
+import application.dtoes.UserDTO;
 import application.entities.UserEntity;
 import com.querydsl.core.types.Predicate;
 
@@ -15,7 +16,7 @@ public interface IUserModel {
 
     public UserEntity getByUserName(String name);
 
-    public UserEntity add(UserEntity data);
+    public UserEntity add(UserDTO data);
 
     public UserEntity update(Integer userId,
                              HashMap<String, String> data);

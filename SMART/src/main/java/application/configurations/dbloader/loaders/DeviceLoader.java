@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.transaction.Transactional;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.util.Random;
 
 /**
@@ -43,7 +44,8 @@ public class DeviceLoader implements ILoader {
 				entity.setDescription(data[2]);
 				entity.setNameDevice(data[0]);
 				entity.setPin(Integer.valueOf(data[3]));
-				entity.setIpaddress(data[1]);
+
+				entity.setIpaddress(InetAddress.getByName(data[1]));
 				this.data.deviceRepository.save(entity);
 			}
 			log.debug("DBLoadTest -> DeviceLoader -> In repository " + this.data.deviceRepository.findAll().size() + " records");

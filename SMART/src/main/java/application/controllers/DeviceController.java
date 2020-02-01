@@ -11,6 +11,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -26,5 +27,24 @@ public class DeviceController {
     public Iterable<DeviceDTO> findAllByWebQuerydsl(@RequestHeader HttpHeaders httpHeaders, HttpServletRequest request,
                                                     @QuerydslPredicate(root = DeviceEntity.class) Predicate predicate) {
         return deviceModel.getAll(predicate);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/")
+    public void post(@RequestHeader HttpHeaders httpHeaders, HttpServletRequest request,
+                                                    @RequestBody DeviceDTO data) {
+        deviceModel.save(data);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = {"/{id}", "/"})
+    @ResponseBody
+    public void delete(@RequestHeader HttpHeaders httpHeaders, HttpServletRequest request,
+                       @PathVariable(required = false) Integer id) {
+        if (id != null)
+        {
+            deviceModel.delete(id);
+        }
+        else {
+            deviceModel.delete();
+        }
     }
 }

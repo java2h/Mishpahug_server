@@ -1,10 +1,15 @@
 package application.entities.data;
 
+import application.dtoes.data.SensorDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -35,10 +40,11 @@ public class SensorEntity {
     private String macAddress;
 
     @Column(name = "ipaddress")
-    private String ipaddress;
+    private InetAddress ipaddress;
 
-    @Column(name = "value")
-    private Float value;
+    @ElementCollection
+    @CollectionTable(name ="values")
+    private List<Double> values = new ArrayList<>();
 
     @Column(name = "pin")
     private Integer pin;
@@ -46,4 +52,14 @@ public class SensorEntity {
     @OneToMany(mappedBy="sensor")
     private Set<OptionEntity> optionEntities;
 
+    public SensorEntity(SensorDTO data) throws UnknownHostException {
+        this.nameSensor = data.getName();
+        this.description = data.getDescription();
+        this.macAddress = data.getAddress();
+        this.ipaddress = InetAddress.getByName(data.getIpAddress());
     }
+
+    public Double getLastValue(){
+        return values.get(values.size()-1);
+    }
+}

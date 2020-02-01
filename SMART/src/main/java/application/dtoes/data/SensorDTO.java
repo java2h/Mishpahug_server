@@ -19,5 +19,6 @@ public class SensorDTO {
         this.name = data.getNameSensor();
         this.description = data.getDescription();
         this.address = data.getMacAddress();
+        this.ipAddress = data.getIpaddress().toString();
     }
 }

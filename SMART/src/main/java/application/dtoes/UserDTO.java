@@ -17,7 +17,6 @@ import java.time.LocalDate;
 @Builder
 @Slf4j
 public class UserDTO {
-    private Integer id;
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -45,6 +44,8 @@ public class UserDTO {
         this.firstName = userEntity.getFirstName();
         this.eMail = userEntity.getEMail();
         this.phoneNumber = userEntity.getPhoneNumber();
+        this.lastName = userEntity.getLastName();
+        this.dateOfBirth = userEntity.getDateOfBirth();
     }
 
     @FunctionalInterface

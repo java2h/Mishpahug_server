@@ -23,6 +23,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.ZoneId;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -41,8 +42,6 @@ public class CheckingData {
     @Autowired
     DeviceRepository deviceRepository;
 
-    byte[] bytes;
-
     InetAddress inetAddress;
 
     private void scheduleFixedDelayTaskMethod(Integer num){
@@ -51,18 +50,11 @@ public class CheckingData {
             List<OptionEntity> optionEntityList = optionRepository.getByDevice_Id(num);
             //System.out.println("scheduleFixedDelayTask -> Number = " + num + " -> Size -> " + optionEntityList.size());
             optionEntityList.forEach(z -> {
-                String[] ipAddress = z.getDevice().getIpaddress().split(".");
-                bytes[0] = Byte.valueOf(bytes[0]);
-                bytes[1] = Byte.valueOf(bytes[1]);
-                bytes[2] = Byte.valueOf(bytes[2]);
-                bytes[3] = Byte.valueOf(bytes[3]);
                 try {
-                    inetAddress = InetAddress.getByAddress(bytes);
-                } catch (UnknownHostException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    if ( !inetAddress.isReachable(60)) return;
+                    if ( !z.getDevice().getIpaddress().isReachable(100)) {
+                        System.out.println("Error!!! Unknown host -> IP = " + z.getDevice().getIpaddress() + " Device num = " + num + " Data = " + z.toString());
+                        return;
+                    }
                     //System.out.println("scheduleFixedDelayTask - " + num + " -> data = " + z);
                     //TODO написать прохождение по значениям
                     switch (z.getType()){
@@ -70,27 +62,27 @@ public class CheckingData {
                                 //TODO Sensor
                             switch (z.getIfType()){
                                 case 0:{
-                                    if (z.getSensor().getValue() > z.getData())
+                                    if (z.getSensor().getLastValue() > z.getData())
                                     {
-                                        sendIP = z.getDevice().getIpaddress();
+                                        sendIP = z.getDevice().getIpaddress().toString();
                                         sendPIN = z.getDevice().getPin();
                                         sendCOM = z.getCommand();
                                     }
                                     break;
                                 }
                                 case 1:{
-                                    if ((z.getSensor().getValue() > z.getData() - delta) && (z.getSensor().getValue() < z.getData() + delta))
+                                    if ((z.getSensor().getLastValue() > z.getData() - delta) && (z.getSensor().getLastValue() < z.getData() + delta))
                                     {
-                                        sendIP = z.getDevice().getIpaddress();
+                                        sendIP = z.getDevice().getIpaddress().toString();
                                         sendPIN = z.getDevice().getPin();
                                         sendCOM = z.getCommand();
                                     }
                                     break;
                                 }
                                 case 2:{
-                                    if (z.getSensor().getValue() < z.getData())
+                                    if (z.getSensor().getLastValue() < z.getData())
                                     {
-                                        sendIP = z.getDevice().getIpaddress();
+                                        sendIP = z.getDevice().getIpaddress().toString();
                                         sendPIN = z.getDevice().getPin();
                                         sendCOM = z.getCommand();
                                     }
@@ -107,7 +99,7 @@ public class CheckingData {
                             LocalDateTime currentDT = LocalDateTime.ofInstant(curr, ZoneId.systemDefault());
                             if (currentDT.isAfter(dateTime))
                             {
-                                sendIP = z.getDevice().getIpaddress();
+                                sendIP = z.getDevice().getIpaddress().toString();
                                 sendPIN = z.getDevice().getPin();
                                 sendCOM = z.getCommand();
                             }

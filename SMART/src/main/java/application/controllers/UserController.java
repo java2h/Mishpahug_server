@@ -66,45 +66,10 @@ public class UserController {
         return userDTOS;
     }
 
-    @PostMapping(value = "/login")
-    public LoginResponse login(@RequestHeader HttpHeaders httpHeaders,
-                               HttpServletRequest request, @RequestBody LoginDTO loginDTO) throws FailedLoginException {
-        UserEntity userEntity = userModel.getByUsernameAndPassword(loginDTO.getUsername(), DigestUtils.md5Hex(loginDTO.getPassword()));
-        if (userEntity == null) {
-            throw new FailedLoginException();
-        }
-        UserSession userSessionOld = userSessionRepository.findByUserNameAndIpAndUserAgentAndIsValidTrue(loginDTO.getUsername(),
-                request.getRemoteAddr(),
-                httpHeaders.get("user-agent").get(0));
-        if (userSessionOld != null) {
-            userSessionOld.setToken(UUID.randomUUID().toString());
-            log.info("User Controller -> Update token");
-            userSessionRepository.save(userSessionOld);
-            return new LoginResponse(userSessionOld.getToken());
-        }
-        UserSession userSessionNew = UserSession.builder()
-                .userName(userEntity.getUserName())
-                .token(UUID.randomUUID().toString())
-                .ip(request.getRemoteAddr())
-                .userAgent(httpHeaders.get("user-agent").get(0))
-                .localDateBegin(DateTime.now().toLocalDate())
-                .localTimeBegin(DateTime.now().toLocalTime())
-                .isValid(true)
-                .build();
-        userSessionRepository.save(userSessionNew);
-        return new LoginResponse(userSessionNew.getToken());
-    }
-
-    @PostMapping(value = "/logout")
-    public LogoutResponse logout(@RequestHeader(name = "Authorization", required = false) String token) {
-        if (token == null) throw new RuntimeException("Token is NULL");
-        UserSession userSession = userSessionRepository.findByTokenAndIsValidTrue(token);
-        if (userSession == null)  throw new RuntimeException("Token is incorrect");
-        userSession.setIsValid(false);
-        userSession.setLocalDateEnd(DateTime.now().toLocalDate());
-        userSession.setLocalTimeEnd(DateTime.now().toLocalTime());
-        userSessionRepository.save(userSession);
-        return new LogoutResponse("OK");
+    @PostMapping(value = "/")
+    public void registration(@RequestHeader HttpHeaders httpHeaders,
+                             HttpServletRequest request, @RequestBody UserDTO userDTO) {
+        userModel.add(userDTO);
     }
 
 }

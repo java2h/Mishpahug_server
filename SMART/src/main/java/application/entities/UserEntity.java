@@ -1,5 +1,6 @@
 package application.entities;
 
+import application.dtoes.UserDTO;
 import application.utils.ImageUtils;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
@@ -71,6 +72,14 @@ public class UserEntity {
 
     @Setter(AccessLevel.NONE)
     private Blob picture;
+
+    public UserEntity(UserDTO userDTO) {
+        this.firstName = userDTO.getFirstName();
+        this.lastName = userDTO.getLastName();
+        this.dateOfBirth = userDTO.getDateOfBirth();
+        this.eMail = userDTO.getEMail();
+        this.phoneNumber = userDTO.getPhoneNumber();
+    }
 
     public void loadAvatar(String filename){
         try {

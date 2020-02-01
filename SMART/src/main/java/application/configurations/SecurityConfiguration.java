@@ -45,7 +45,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE,"/arduino/").permitAll()
                 .antMatchers(HttpMethod.PUT,"/arduino/").permitAll()
 
-                .antMatchers("/user/login", "/user/register").anonymous()
+                .antMatchers("/login/").anonymous()
                 .antMatchers(HttpMethod.GET,"/user/").permitAll()
                 .antMatchers(HttpMethod.POST,"/user/").permitAll()
                 .antMatchers(HttpMethod.PUT,"/user/").permitAll()

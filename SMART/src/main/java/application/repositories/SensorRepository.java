@@ -16,6 +16,7 @@ import java.util.Optional;
 public interface SensorRepository  extends JpaRepository<SensorEntity, Integer>,
         QuerydslPredicateExecutor<SensorEntity>, QuerydslBinderCustomizer<QSensorEntity> {
         public SensorEntity getByNameSensor(String name);
+        public SensorEntity getByMacAddress(String macAddress);
     @Override
     default public void customize(QuerydslBindings bindings, QSensorEntity root) {
         bindings.bind(String.class).first((StringPath path, String value) -> path.containsIgnoreCase(value));

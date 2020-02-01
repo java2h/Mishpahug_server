@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 @Service
@@ -27,6 +28,30 @@ public class SensorModel implements ISensorModel {
     @Override
     public SensorEntity getByName(String name) {
         return sensorRepository.getByNameSensor(name);
+    }
+
+    @Override
+    public SensorEntity getByMAC(String mac) {
+        return sensorRepository.getByMacAddress(mac);
+    }
+
+    @Override
+    public void save(SensorDTO data) {
+        try {
+            sensorRepository.save(new SensorEntity(data));
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void delete(Integer id) {
+        sensorRepository.deleteById(id);
+    }
+
+    @Override
+    public void delete() {
+        sensorRepository.deleteAll();
     }
 
 }

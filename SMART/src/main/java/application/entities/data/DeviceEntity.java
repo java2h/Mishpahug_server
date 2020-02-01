@@ -1,10 +1,13 @@
 package application.entities.data;
 
+        import application.dtoes.data.DeviceDTO;
         import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
         import lombok.*;
         import lombok.extern.slf4j.Slf4j;
 
         import javax.persistence.*;
+        import java.net.InetAddress;
+        import java.net.UnknownHostException;
         import java.util.Set;
 
 @Entity
@@ -32,11 +35,18 @@ public class DeviceEntity {
     private String nameDevice;
 
     @Column(name = "ipaddress")
-    private String ipaddress;
+    private InetAddress ipaddress;
 
     @Column(name = "pin")
     private Integer pin;
 
     @OneToMany(mappedBy="device")
     private Set<OptionEntity> optionEntities;
+
+    public DeviceEntity(DeviceDTO data) throws UnknownHostException {
+        this.nameDevice = data.getName();
+        this.description = data.getDescription();
+        this.pin = data.getPin();
+        this.ipaddress = InetAddress.getByName(data.getIpAddress());
+    }
 }

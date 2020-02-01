@@ -20,5 +20,6 @@ public class DeviceDTO {
         this.name = data.getNameDevice();
         this.description = data.getDescription();
         this.pin = data.getPin();
+        this.ipAddress = data.getIpaddress().toString();
     }
 }

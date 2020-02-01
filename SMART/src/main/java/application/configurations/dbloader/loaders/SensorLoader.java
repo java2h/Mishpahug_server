@@ -1,6 +1,7 @@
 package application.configurations.dbloader.loaders;
 
 import application.configurations.dbloader.LoaderDependencies;
+import application.entities.data.DeviceEntity;
 import application.entities.data.SensorEntity;
 import application.utils.RandomGenerator;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.transaction.Transactional;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.util.Random;
 
 /**
@@ -38,13 +40,13 @@ public class SensorLoader implements ILoader {
 			// need
 			// https://stackoverflow.com/questions/49595852/deleteall-in-repository-randomly-causes-constraintviolationexception
 			String detail;
-			for (int i = 0; i < 32; i++) {
+			while ((detail = br.readLine()) != null) {
+				String[] data = detail.split("!");
 				SensorEntity entity = new SensorEntity();
-				entity.setDescription(RandomGenerator.genText(97,122));
-				entity.setNameSensor(RandomGenerator.genText(97,122));
-				entity.setPin(3);
-				entity.setMacAddress(RandomGenerator.genMAC());
-				entity.setIpaddress(RandomGenerator.genMAC());
+				entity.setNameSensor(data[0]);
+				entity.setIpaddress(InetAddress.getByName(data[1]));
+				entity.setMacAddress(data[2]);
+				entity.setDescription(data[3]);
 				this.data.sensorRepository.save(entity);
 			}
 			log.debug("DBLoadTest -> SensorLoader -> In repository " + this.data.sensorRepository.findAll().size() + " records");

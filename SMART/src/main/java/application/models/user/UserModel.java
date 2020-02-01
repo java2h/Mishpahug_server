@@ -1,5 +1,6 @@
 package application.models.user;
 
+import application.dtoes.UserDTO;
 import application.entities.UserEntity;
 import application.repositories.UserRepository;
 import com.querydsl.core.types.Predicate;
@@ -38,8 +39,8 @@ public class UserModel implements IUserModel {
     }
 
     @Override
-    public UserEntity add(UserEntity data) {
-         return userRepository.save(data);
+    public UserEntity add(UserDTO data) {
+         return userRepository.save(new UserEntity((data)));
     }
 
     @Override
