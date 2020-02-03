@@ -7,6 +7,7 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -23,15 +24,17 @@ public class QSensorEntity extends EntityPathBase<SensorEntity> {
 
     public final NumberPath<Integer> id = createNumber("id", Integer.class);
 
-    public final StringPath ipaddress = createString("ipaddress");
+    public final SimplePath<java.net.InetAddress> ipaddress = createSimple("ipaddress", java.net.InetAddress.class);
 
     public final StringPath macAddress = createString("macAddress");
 
     public final StringPath nameSensor = createString("nameSensor");
 
+    public final SetPath<OptionEntity, QOptionEntity> optionEntities = this.<OptionEntity, QOptionEntity>createSet("optionEntities", OptionEntity.class, QOptionEntity.class, PathInits.DIRECT2);
+
     public final NumberPath<Integer> pin = createNumber("pin", Integer.class);
 
-    public final NumberPath<Float> value = createNumber("value", Float.class);
+    public final SetPath<ValueEntity, QValueEntity> values = this.<ValueEntity, QValueEntity>createSet("values", ValueEntity.class, QValueEntity.class, PathInits.DIRECT2);
 
     public QSensorEntity(String variable) {
         super(SensorEntity.class, forVariable(variable));

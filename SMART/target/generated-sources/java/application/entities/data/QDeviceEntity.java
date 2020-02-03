@@ -7,6 +7,7 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -23,9 +24,11 @@ public class QDeviceEntity extends EntityPathBase<DeviceEntity> {
 
     public final NumberPath<Integer> id = createNumber("id", Integer.class);
 
-    public final StringPath ipaddress = createString("ipaddress");
+    public final SimplePath<java.net.InetAddress> ipaddress = createSimple("ipaddress", java.net.InetAddress.class);
 
     public final StringPath nameDevice = createString("nameDevice");
+
+    public final SetPath<OptionEntity, QOptionEntity> optionEntities = this.<OptionEntity, QOptionEntity>createSet("optionEntities", OptionEntity.class, QOptionEntity.class, PathInits.DIRECT2);
 
     public final NumberPath<Integer> pin = createNumber("pin", Integer.class);
 
