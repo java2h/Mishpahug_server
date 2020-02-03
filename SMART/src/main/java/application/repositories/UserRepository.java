@@ -53,6 +53,10 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer>,
             return Optional.of(path.eq(eMails.get(0)));
         });
 
+        bindings.bind(root.userName).all((path, value) -> {
+            List<? extends String> phoneNumbers = new ArrayList<>(value);
+            return Optional.of(path.eq(phoneNumbers.get(0)));
+        });
 
         bindings.bind(root.phoneNumber).all((path, value) -> {
             List<? extends String> phoneNumbers = new ArrayList<>(value);

@@ -39,13 +39,15 @@ public class UserLoader implements ILoader {
 			String detail;
 			while ((detail = br.readLine()) != null) {
 				String[] data = detail.split("!");
-				UserEntity user = new UserEntity(data[0].split("@")[0], data[0]);
+				UserEntity user = new UserEntity();
 				user.setEncrytedPassword(DigestUtils.md5Hex((data[0].split("@")[0])));
+				user.setUserName(data[0].split("@")[0]);
 				user.setPhoneNumber(RandomGenerator.genText(48,57));
 				user.setDateOfBirth(RandomGenerator.genDate());
 				user.setFirstName(RandomGenerator.genText(97,122));
 				user.setLastName(RandomGenerator.genText(97,122));
 				user.activate();
+				user.setEMail(data[0]);
 				user.loadAvatar("av.png");
 				log.debug("DBLoadTest -> UserLoader -> userentity = " + user);
 				this.data.userRepository.save(user);

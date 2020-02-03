@@ -34,7 +34,7 @@ public class QSensorEntity extends EntityPathBase<SensorEntity> {
 
     public final NumberPath<Integer> pin = createNumber("pin", Integer.class);
 
-    public final SetPath<ValueEntity, QValueEntity> values = this.<ValueEntity, QValueEntity>createSet("values", ValueEntity.class, QValueEntity.class, PathInits.DIRECT2);
+    public final ListPath<ValueEntity, QValueEntity> values = this.<ValueEntity, QValueEntity>createList("values", ValueEntity.class, QValueEntity.class, PathInits.DIRECT2);
 
     public QSensorEntity(String variable) {
         super(SensorEntity.class, forVariable(variable));

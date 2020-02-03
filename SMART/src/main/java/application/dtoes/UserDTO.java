@@ -22,6 +22,7 @@ public class UserDTO {
     private String phoneNumber;
     private String eMail;
     private String userName;
+    private String confirmedPassword;
     private String encrytedPassword;
     private LocalDate dateOfBirth;
     private UserStatus status = UserStatus.ACTIVE;

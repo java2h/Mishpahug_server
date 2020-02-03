@@ -49,7 +49,6 @@ public class UserEntity {
     @NotNull
     @lombok.NonNull
     @Column(name = "username", length = 36, nullable = false)
-    @Setter(AccessLevel.NONE)
     private String userName;
 
     @Column(name = "Encryted_Password", length = 128)
@@ -79,6 +78,7 @@ public class UserEntity {
         this.dateOfBirth = userDTO.getDateOfBirth();
         this.eMail = userDTO.getEMail();
         this.phoneNumber = userDTO.getPhoneNumber();
+        this.userName = userDTO.getUserName();
     }
 
     public void loadAvatar(String filename){
@@ -109,16 +109,16 @@ public class UserEntity {
         void change(UserEntity user);
     }
 
-    /**
+/*    *//**
      * UserEntity: required fields, userName is immutable;
-     */
+     *//*
     public UserEntity(@NotNull String userName, @NotNull String email) {
-        if (userName.length() > 36) {
+*//*        if (userName.length() > 36) {
             throw new IllegalArgumentException("userName too long");
-        }
+        }*//*
         this.userName = userName;
         this.eMail = email;
-    }
+    }*/
 
     public String fieldByName(String fieldName) {
         String res = "n/a";

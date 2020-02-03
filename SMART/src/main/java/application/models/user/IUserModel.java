@@ -18,7 +18,7 @@ public interface IUserModel {
 
     public UserEntity add(UserDTO data);
 
-    public UserEntity update(Integer userId,
+    public UserEntity update(String username,
                              HashMap<String, String> data);
 
     public UserEntity deleteByID(Integer userId);

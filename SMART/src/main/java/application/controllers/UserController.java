@@ -29,10 +29,10 @@ public class UserController {
     UserSessionRepository userSessionRepository;
 
 
-    @PutMapping(value = "/{id}")
+    @PutMapping(value = "/{username}")
     public UserEntity update(@RequestHeader HttpHeaders httpHeaders, HttpServletRequest request,
-                          @RequestBody HashMap<String, String> data, @PathVariable(value = "id") Integer id) {
-        return userModel.update(id, data);
+                          @RequestBody HashMap<String, String> data, @PathVariable(value = "username") String username) {
+        return userModel.update(username, data);
     }
 
 
@@ -42,6 +42,11 @@ public class UserController {
         return userModel.deleteByID(id);
     }
 
+    @GetMapping(value = "/{id}")
+    public UserEntity getById(@RequestHeader HttpHeaders httpHeaders, HttpServletRequest request,
+                             @PathVariable(value = "id") Integer id) {
+        return userModel.getById(id);
+    }
 
     @DeleteMapping(value = "/")
     public void deleteAll(@RequestHeader HttpHeaders httpHeaders,
