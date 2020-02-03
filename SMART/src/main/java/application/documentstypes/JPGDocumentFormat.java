@@ -1,6 +1,5 @@
 package application.documentstypes;
 
-import application.entities.UserEntity;
 import application.models.user.IUserModel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
 
 @Service
 @Slf4j

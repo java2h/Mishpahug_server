@@ -8,7 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import javax.persistence.*;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -42,15 +44,14 @@ public class SensorEntity {
     @Column(name = "ipaddress")
     private InetAddress ipaddress;
 
-    @ElementCollection
-    @CollectionTable(name ="values")
-    private List<Double> values = new ArrayList<>();
-
     @Column(name = "pin")
     private Integer pin;
 
+    @ElementCollection
+    private List<ValueEntity> values = new ArrayList<>();
+
     @OneToMany(mappedBy="sensor")
-    private Set<OptionEntity> optionEntities;
+    private Set<OptionEntity> optionEntities = new HashSet<>();
 
     public SensorEntity(SensorDTO data) throws UnknownHostException {
         this.nameSensor = data.getName();
@@ -60,6 +61,22 @@ public class SensorEntity {
     }
 
     public Double getLastValue(){
-        return values.get(values.size()-1);
+        return (Double) values.toArray()[values.size()-1];
+    }
+
+    public void addValue(ValueEntity data){
+        values.add(data);
+    }
+
+    public void clearData(){
+        values.clear();
+    }
+
+    public void clearData(LocalDate dateBegin, LocalDate dateEnd){
+        values.forEach(x->{
+            if ((x.getDateUpdate().isAfter(dateBegin)) && (x.getDateUpdate().isBefore(dateEnd))){
+                values.remove(x);
+            }
+        });
     }
 }

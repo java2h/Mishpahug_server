@@ -32,6 +32,9 @@ public class DB_test_loader implements CommandLineRunner {
 	@Qualifier("optionLoader")
 	private ILoader optionLoader;
 
+	@Autowired
+	@Qualifier("valueLoader")
+	private ILoader valueLoader;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -39,8 +42,8 @@ public class DB_test_loader implements CommandLineRunner {
 		loadTest(MPHEntity.SENSOR);
 		loadTest(MPHEntity.DEVICE);
 		loadTest(MPHEntity.OPTIONS);
+		loadTest(MPHEntity.VALUE);
 		loadTest(MPHEntity.LOGS);
-
 	}
 
 	public void loadTest(MPHEntity entity) {
@@ -62,7 +65,10 @@ public class DB_test_loader implements CommandLineRunner {
 			optionLoader.load();
 			break;
 		}
-
+			case VALUE: {
+			valueLoader.load();
+			break;
+		}
 		}
 
 	}

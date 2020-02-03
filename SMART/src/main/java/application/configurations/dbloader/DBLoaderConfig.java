@@ -1,16 +1,14 @@
 package application.configurations.dbloader;
 
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
+import application.configurations.dbloader.loaders.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 
-import application.configurations.dbloader.loaders.*;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 @Configuration
 public class DBLoaderConfig {
@@ -52,5 +50,9 @@ public class DBLoaderConfig {
 		createBufferedReader(MPHEntity.OPTIONS);
 		return new OptionsLoader(bufferedReader);
 	}
-
+	@Bean(name = "valueLoader")
+	public ILoader valueLoader() {
+		createBufferedReader(MPHEntity.VALUE);
+		return new ValueLoader(bufferedReader);
+	}
 }

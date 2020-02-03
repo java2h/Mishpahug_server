@@ -1,28 +1,20 @@
 package application.controllers;
 
+import application.dtoes.UserDTO;
 import application.entities.UserEntity;
-import application.entities.security.UserSession;
 import application.models.user.IUserModel;
 import application.repositories.UserSessionRepository;
 import com.querydsl.core.types.Predicate;
-import application.dtoes.LoginDTO;
-import application.dtoes.LoginResponse;
-import application.dtoes.LogoutResponse;
-import application.dtoes.UserDTO;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.codec.digest.DigestUtils;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
-import javax.security.auth.login.FailedLoginException;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 
 @Slf4j
 @RestController

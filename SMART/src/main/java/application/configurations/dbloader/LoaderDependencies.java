@@ -22,7 +22,6 @@ public class LoaderDependencies { //TODO: stability risk with public access modi
 	@Autowired
 	public OptionRepository optionRepository;
 
-
 	public LoaderDependencies() {
 	}
 }

@@ -22,6 +22,11 @@ public enum MPHEntity {
 			return "data_options.csv";
 		}
 	},
+	VALUE {
+		public String dataFile() {
+			return "data_value.csv";
+		}
+	},
 	LOGS {
 		public String dataFile() {
 			return "data_blank.csv";

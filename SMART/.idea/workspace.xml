@@ -2,35 +2,40 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="50ccb3b7-2347-4404-8dc9-8b091e4e20a0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/application/controllers/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/application/controllers/LogoutController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/application/configurations/dbloader/loaders/ValueLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/application/entities/data/ValueEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/generated-sources/java/application/entities/data/QValueEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/configurations/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/configurations/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/configurations/dbloader/DBLoaderConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/configurations/dbloader/DBLoaderConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/configurations/dbloader/DB_test_loader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/configurations/dbloader/DB_test_loader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/configurations/dbloader/LoaderDependencies.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/configurations/dbloader/LoaderDependencies.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/configurations/dbloader/MPHEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/configurations/dbloader/MPHEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/configurations/dbloader/loaders/DeviceLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/configurations/dbloader/loaders/DeviceLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/configurations/dbloader/loaders/OptionsLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/configurations/dbloader/loaders/OptionsLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/configurations/dbloader/loaders/SensorLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/configurations/dbloader/loaders/SensorLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/configurations/dbloader/loaders/UserLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/configurations/dbloader/loaders/UserLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/configurations/scheduler/CheckingData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/configurations/scheduler/CheckingData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/controllers/DataFromDeviceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/controllers/DataFromDeviceController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/controllers/DeviceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/controllers/DeviceController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/controllers/SensorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/controllers/SensorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/dtoes/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/dtoes/UserDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/documentstypes/JPGDocumentFormat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/documentstypes/JPGDocumentFormat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/dtoes/data/DeviceDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/dtoes/data/DeviceDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/dtoes/data/SensorDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/dtoes/data/SensorDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/entities/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/entities/UserEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/entities/data/DeviceEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/entities/data/DeviceEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/entities/data/OptionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/entities/data/OptionEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/entities/data/SensorEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/entities/data/SensorEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/data/device/DeviceModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/data/device/DeviceModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/data/device/IDeviceModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/data/device/IDeviceModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/data/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/data/notes.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/models/data/sensor/ISensorModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/data/sensor/ISensorModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/models/data/sensor/SensorModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/data/sensor/SensorModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/user/IUserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/user/IUserModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/user/UserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/user/UserModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/application/repositories/SensorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/repositories/SensorRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/long-datafiles/data_sensor.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/long-datafiles/data_sensor.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/short-datafiles/data_sensor.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/short-datafiles/data_sensor.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/long-datafiles/data_sensor.csv" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/long-datafiles/data_sensor.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/short-datafiles/data_sensor.csv" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/short-datafiles/data_sensor.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev-debug.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev-debug.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev-proction.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev-production.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/long-datafiles/data_arduino.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/long-datafiles/data_options.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/long-datafiles/data_options.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/short-datafiles/data_arduino.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application-dev-debug.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-dev-debug.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application-dev-proction.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/java/application/entities/data/QDeviceEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/java/application/entities/data/QDeviceEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/java/application/entities/data/QOptionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/java/application/entities/data/QOptionEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/java/application/entities/data/QSensorEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/java/application/entities/data/QSensorEntity.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -136,7 +141,8 @@
       <workItem from="1580239578690" duration="6658000" />
       <workItem from="1580248055659" duration="11487000" />
       <workItem from="1580417047216" duration="5903000" />
-      <workItem from="1580491790974" duration="13454000" />
+      <workItem from="1580491790974" duration="31140000" />
+      <workItem from="1580639856805" duration="7126000" />
     </task>
     <servers />
   </component>

@@ -7,12 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.transaction.Transactional;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.Date;
-
-import javax.transaction.Transactional;
 
 /**
  * Loads users

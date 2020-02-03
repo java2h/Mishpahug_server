@@ -1,7 +1,6 @@
 package application.dtoes.data;
 
 import application.entities.data.DeviceEntity;
-import application.entities.data.DeviceEntity;
 import lombok.*;
 
 @AllArgsConstructor

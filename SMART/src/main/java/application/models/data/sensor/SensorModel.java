@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.net.UnknownHostException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 @Service
@@ -52,6 +53,30 @@ public class SensorModel implements ISensorModel {
     @Override
     public void delete() {
         sensorRepository.deleteAll();
+    }
+
+    @Override
+    public void deleteData() {
+        sensorRepository.findAll().forEach(x -> {
+            x.clearData();
+        });
+    }
+
+    @Override
+    public void deleteData(String mac) {
+        sensorRepository.getByMacAddress(mac).clearData();
+    }
+
+    @Override
+    public void deleteData(String mac, LocalDate dateBegin, LocalDate dateEnd) {
+        sensorRepository.getByMacAddress(mac).clearData(dateBegin, dateEnd);
+    }
+
+    @Override
+    public void deleteData(LocalDate dateBegin, LocalDate dateEnd) {
+        sensorRepository.findAll().forEach(x -> {
+            x.clearData(dateBegin, dateEnd);
+        });
     }
 
 }

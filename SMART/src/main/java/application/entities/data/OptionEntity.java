@@ -1,15 +1,8 @@
 package application.entities.data;
 
-import application.dtoes.data.OptionDTO;
-import application.models.data.device.DeviceModel;
-import application.models.data.device.IDeviceModel;
-import application.models.data.sensor.ISensorModel;
-import application.repositories.DeviceRepository;
-import application.repositories.SensorRepository;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.time.LocalDate;

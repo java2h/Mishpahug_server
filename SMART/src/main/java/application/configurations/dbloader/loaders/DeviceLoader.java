@@ -21,8 +21,9 @@ public class DeviceLoader implements ILoader {
 
 	@Autowired
 	LoaderDependencies data;
-
+	private Integer selector = 1; // 1- from file 2-generation
 	private BufferedReader br;
+	Random rr = new Random();
 
 	public DeviceLoader(BufferedReader br) {
 		this.br = br;
@@ -37,16 +38,28 @@ public class DeviceLoader implements ILoader {
 			// need
 			// https://stackoverflow.com/questions/49595852/deleteall-in-repository-randomly-causes-constraintviolationexception
 //TODO создать файл для генерации постоянных данных
-			String detail;
-			while ((detail = br.readLine()) != null) {
-				String[] data = detail.split("!");
-				DeviceEntity entity = new DeviceEntity();
-				entity.setDescription(data[2]);
-				entity.setNameDevice(data[0]);
-				entity.setPin(Integer.valueOf(data[3]));
-
-				entity.setIpaddress(InetAddress.getByName(data[1]));
-				this.data.deviceRepository.save(entity);
+			if (selector == 1){
+				String detail;
+				while ((detail = br.readLine()) != null) {
+					String[] data = detail.split("!");
+					DeviceEntity entity = new DeviceEntity();
+					entity.setDescription(data[2]);
+					entity.setNameDevice(data[0]);
+					entity.setPin(Integer.valueOf(data[3]));
+					entity.setIpaddress(InetAddress.getByName(data[1]));
+					this.data.deviceRepository.save(entity);
+				}
+			}
+			if (selector == 2){
+				String detail;
+				for (int i = 0; i < 54; i++) {
+					DeviceEntity entity = new DeviceEntity();
+					entity.setDescription(RandomGenerator.genText(97,122));
+					entity.setNameDevice(RandomGenerator.genText(97,122));
+					entity.setPin(rr.nextInt(43));
+					entity.setIpaddress(InetAddress.getByName(RandomGenerator.genIP()));
+					this.data.deviceRepository.save(entity);
+				}
 			}
 			log.debug("DBLoadTest -> DeviceLoader -> In repository " + this.data.deviceRepository.findAll().size() + " records");
 			br.close();
