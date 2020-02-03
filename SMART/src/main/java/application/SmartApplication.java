@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MishpohugApplication {
+public class SmartApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MishpohugApplication.class, args);
+        SpringApplication.run(SmartApplication.class, args);
     }
 
 }
