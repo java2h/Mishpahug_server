@@ -34,13 +34,13 @@ public class WebRequestAspect {
 			log.info(targetClass + " -> " + targetMethod +  idTrace +  " -> headers -> "
 					+ String.format("Header '%s' = %s", key, value));
 		});
-		log.debug(targetClass + " -> " + targetMethod + " -> Remote IP -> " + request.getRemoteAddr());
-		log.debug(targetClass + " -> " + targetMethod + " -> Remote Host -> " + request.getRemoteHost());
-		log.debug(targetClass + " -> " + targetMethod + " -> Local name -> " + request.getLocalName());
-		log.debug(targetClass + " -> " + targetMethod + " -> Path info -> " + request.getPathInfo());
-		log.debug(targetClass + " -> " + targetMethod + " -> Protocol -> " + request.getProtocol());
-		log.debug(targetClass + " -> " + targetMethod + " -> Scheme -> " + request.getScheme());
-		log.debug (targetClass + " -> " + targetMethod + " -> Requested session id -> " + request.getRequestedSessionId());
+		log.info(targetClass + " -> " + targetMethod + " -> Remote IP -> " + request.getRemoteAddr());
+		log.info(targetClass + " -> " + targetMethod + " -> Remote Host -> " + request.getRemoteHost());
+		log.info(targetClass + " -> " + targetMethod + " -> Local name -> " + request.getLocalName());
+		log.info(targetClass + " -> " + targetMethod + " -> Path info -> " + request.getPathInfo());
+		log.info(targetClass + " -> " + targetMethod + " -> Protocol -> " + request.getProtocol());
+		log.info(targetClass + " -> " + targetMethod + " -> Scheme -> " + request.getScheme());
+		log.info (targetClass + " -> " + targetMethod + " -> Requested session id -> " + request.getRequestedSessionId());
 		Object proceed = joinPoint.proceed();
 		return proceed;
 		

@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="50ccb3b7-2347-4404-8dc9-8b091e4e20a0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/java/application/controller/DataWebRequestTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/application/controller/DeviceWebRequestTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/application/controller/OptionWebRequestTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/application/controller/SensorWebRequestTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/application/controller/UserWebRequestTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/application/null.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/null.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/long-datafiles/data_blank.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/long-datafiles/data_device.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/long-datafiles/data_options.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/long-datafiles/data_sensor.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/long-datafiles/data_user.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/long-datafiles/data_user_long.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/short-datafiles/data_blank.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/short-datafiles/data_device.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/short-datafiles/data_options.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/short-datafiles/data_sensor.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/short-datafiles/data_user.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/configurations/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/configurations/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/configurations/SecurityFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/configurations/SecurityFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/configurations/dbloader/loaders/UserLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/configurations/dbloader/loaders/UserLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/dtoes/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/dtoes/UserDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/entities/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/entities/UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/user/IUserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/user/IUserModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/models/user/UserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/models/user/UserModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/application/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/repositories/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/long-datafiles/data_arduino.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/long-datafiles/data_options.csv" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/long-datafiles/data_options.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/short-datafiles/data_arduino.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/java/application/entities/QUserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/java/application/entities/QUserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/java/application/entities/data/QDeviceEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/java/application/entities/data/QDeviceEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/java/application/entities/data/QOptionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/java/application/entities/data/QOptionEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/java/application/entities/data/QSensorEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/java/application/entities/data/QSensorEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/java/application/entities/data/QValueEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/java/application/entities/data/QValueEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/java/application/entities/security/QRoleEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/java/application/entities/security/QRoleEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/java/application/entities/security/QUserRoleEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/java/application/entities/security/QUserRoleEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/generated-sources/java/application/entities/security/QUserSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/java/application/entities/security/QUserSession.java" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="createModuleGroups" value="true" />
+        <option name="dedicatedModuleDir" value="D:\Mishpahug_server\SMART" />
+        <option name="downloadDocsAutomatically" value="true" />
+        <option name="downloadSourcesAutomatically" value="true" />
+        <option name="importAutomatically" value="true" />
+        <option name="jdkForImporter" value="1.8" />
+        <option name="lookForNested" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1WpiW1TJIvmnoz1fepQjydvG8zA" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/test/resources" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="application.controller" />
+      <recent name="application.configurations.dbloader.loaders" />
+      <recent name="application.utils" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Mishpahug_server\SMART\src\test\resources" />
+      <recent name="D:\Mishpahug_server\SMART\src\main\resources\long-datafiles" />
+      <recent name="D:\Mishpahug_server\SMART\src\main\resources\short-datafiles" />
+      <recent name="D:\Mishpahug_server\SMART\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.UserWebRequestTest.updateAllShouldReturnUpdatedUser">
+    <configuration name="UserWebRequestTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SMART" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="application.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="application.controller" />
+      <option name="MAIN_CLASS_NAME" value="application.controller.UserWebRequestTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserWebRequestTest.addUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SMART" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="application.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="application.controller" />
+      <option name="MAIN_CLASS_NAME" value="application.controller.UserWebRequestTest" />
+      <option name="METHOD_NAME" value="addUser" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserWebRequestTest.getByIdShouldReturnUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SMART" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="application.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="application.controller" />
+      <option name="MAIN_CLASS_NAME" value="application.controller.UserWebRequestTest" />
+      <option name="METHOD_NAME" value="getByIdShouldReturnUser" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserWebRequestTest.testFiltring" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SMART" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="application.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="application.controller" />
+      <option name="MAIN_CLASS_NAME" value="application.controller.UserWebRequestTest" />
+      <option name="METHOD_NAME" value="testFiltring" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserWebRequestTest.updateAllShouldReturnUpdatedUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SMART" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="application.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="application.controller" />
+      <option name="MAIN_CLASS_NAME" value="application.controller.UserWebRequestTest" />
+      <option name="METHOD_NAME" value="updateAllShouldReturnUpdatedUser" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MishpohugApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="SMART" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="application.SmartApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.UserWebRequestTest.updateAllShouldReturnUpdatedUser" />
+        <item itemvalue="JUnit.UserWebRequestTest" />
+        <item itemvalue="JUnit.UserWebRequestTest.testFiltring" />
+        <item itemvalue="JUnit.UserWebRequestTest.getByIdShouldReturnUser" />
+        <item itemvalue="JUnit.UserWebRequestTest.addUser" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="50ccb3b7-2347-4404-8dc9-8b091e4e20a0" name="Default Changelist" comment="" />
+      <created>1579852964426</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1579852964426</updated>
+      <workItem from="1579852966055" duration="52914000" />
+      <workItem from="1580239578690" duration="6658000" />
+      <workItem from="1580248055659" duration="11487000" />
+      <workItem from="1580417047216" duration="5903000" />
+      <workItem from="1580491790974" duration="31140000" />
+      <workItem from="1580639856805" duration="7249000" />
+      <workItem from="1580728923844" duration="7375000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>
